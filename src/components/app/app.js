@@ -12,12 +12,12 @@ export default class App extends Component {
         <Header />
         <RandomPlanet />
 
-        <div className="row mb2">
-          <div className="col-sm-6">
-            <ItemList />
-          </div>
-          <div className="col-sm-6">
+        <div className="row">
+          <div className="col-sm-7">
             <PersonDetails />
+          </div>
+          <div className="col-sm-5">
+            <ItemList />
           </div>
         </div>
       </div>

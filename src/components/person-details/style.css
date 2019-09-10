@@ -1,0 +1,18 @@
+.details {
+  display: flex;
+  background-color: #4E5D6C;
+}
+
+.details-image {
+  margin-right: 20px;
+  padding: 10px;
+}
+
+.details-info {
+  padding: 20px 0;
+}
+
+.details-list {
+  margin: 0;
+  padding: 0 0 0 1em;
+}
