@@ -20,6 +20,16 @@ export default class RandomPlanet extends Component {
     this.updatePlanet();
   }
 
+  onImageError = () => {
+    this.setState(state => ({
+      ...state,
+      planet: {
+        ...state.planet,
+        image: "https://starwars-visualguide.com/assets/img/placeholder.jpg"
+      }
+    }));
+  };
+
   onError = error => {
     this.setState({
       error: true,
@@ -46,7 +56,9 @@ export default class RandomPlanet extends Component {
 
     const errorMessage = error ? <ErrorIndicator /> : null;
     const spinner = loading ? <Spinner /> : null;
-    const content = hasData ? <PlanetView planet={planet} /> : null;
+    const content = hasData ? (
+      <PlanetView planet={planet} onImageError={this.onImageError} />
+    ) : null;
 
     return (
       <div className="jumbotron">
@@ -60,8 +72,8 @@ export default class RandomPlanet extends Component {
   }
 }
 
-const PlanetView = ({ planet }) => {
-  const { id, name, population, rotationPeriod, diameter } = planet;
+const PlanetView = ({ planet, onImageError }) => {
+  const { id, image, name, population, rotationPeriod, diameter } = planet;
 
   return (
     <div className="row">
@@ -69,22 +81,36 @@ const PlanetView = ({ planet }) => {
         <img
           className="card-img-top"
           alt={name}
-          src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`}
+          onError={onImageError}
+          src={image}
         />
       </div>
-      <div className="col-sm-8">
-        <div className="card">
-          <div className="card-body">
-            <h5 className="card-title">{name}</h5>
-          </div>
-          <ul className="list-group list-group-flush">
-            <li className="list-group-item">Population: {population}</li>
-            <li className="list-group-item">
-              Rotation Period: {rotationPeriod}
-            </li>
-            <li className="list-group-item">Diameter: {diameter}</li>
-          </ul>
-        </div>
+      <div className="col-sm-6">
+        <table className="table table-hover">
+          <thead>
+            <tr>
+              <th colSpan="2">
+                <h5 className="mb-0">
+                  {name} <small>ID: {id}</small>
+                </h5>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Population:</td>
+              <td>{population}</td>
+            </tr>
+            <tr>
+              <td>Rotation Period:</td>
+              <td>{rotationPeriod}</td>
+            </tr>
+            <tr>
+              <td>Diameter:</td>
+              <td>{diameter}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   );

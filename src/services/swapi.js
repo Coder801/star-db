@@ -51,8 +51,10 @@ export default class SwapiService {
   }
 
   _transformPlanet(planet) {
+    const id = this._extractIdFromUrl(planet.url);
     return {
-      id: this._extractIdFromUrl(planet.url),
+      id,
+      image: `https://starwars-visualguide.com/assets/img/planets/${id}.jpg`,
       name: planet.name,
       diameter: planet.diameter,
       population: planet.population,
