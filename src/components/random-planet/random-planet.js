@@ -1,10 +1,13 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 import Spinner from "../spinner";
 import ErrorIndicator from "../error-indicator";
 
 import SwapiService from "../../services/swapi";
 import random from "../../services/random";
+
+import "./style.css";
 
 export default class RandomPlanet extends Component {
   state = {
@@ -15,8 +18,7 @@ export default class RandomPlanet extends Component {
 
   swapiService = new SwapiService();
 
-  constructor() {
-    super();
+  componentDidMount() {
     this.updatePlanet();
   }
 
@@ -30,7 +32,7 @@ export default class RandomPlanet extends Component {
     }));
   };
 
-  onError = error => {
+  onError = () => {
     this.setState({
       error: true,
       loading: false
@@ -61,57 +63,57 @@ export default class RandomPlanet extends Component {
     ) : null;
 
     return (
-      <div className="jumbotron">
-        <div className="container">
-          {spinner}
-          {errorMessage}
-          {content}
-        </div>
-      </div>
+      <React.Fragment>
+        {spinner}
+        {errorMessage}
+        {content}
+      </React.Fragment>
     );
   }
 }
 
 const PlanetView = ({ planet, onImageError }) => {
-  const { id, image, name, population, rotationPeriod, diameter } = planet;
+  const {
+    id,
+    image,
+    name,
+    population,
+    rotationPeriod,
+    diameter,
+    orbitalPeriod,
+    climate,
+    gravity,
+    terrain,
+    surfaceWater
+  } = planet;
 
   return (
-    <div className="row">
-      <div className="col-sm-4">
+    <div>
+      <div className="card">
+        <h5 className="card-header">{name}</h5>
         <img
           className="card-img-top"
           alt={name}
           onError={onImageError}
           src={image}
         />
-      </div>
-      <div className="col-sm-6">
-        <table className="table table-hover">
-          <thead>
-            <tr>
-              <th colSpan="2">
-                <h5 className="mb-0">
-                  {name} <small>ID: {id}</small>
-                </h5>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Population:</td>
-              <td>{population}</td>
-            </tr>
-            <tr>
-              <td>Rotation Period:</td>
-              <td>{rotationPeriod}</td>
-            </tr>
-            <tr>
-              <td>Diameter:</td>
-              <td>{diameter}</td>
-            </tr>
-          </tbody>
-        </table>
+        <ul className="list-group list-group-flush">
+          <li className="list-group-item">Population: {population}</li>
+          <li className="list-group-item">Climate: {climate}</li>
+          <li className="list-group-item">Rotation Period: {rotationPeriod}</li>
+          <li className="list-group-item">Gravity: {gravity}</li>
+          <li className="list-group-item">Diameter: {diameter}</li>
+          <li className="list-group-item">Terrain: {terrain}</li>
+          <li className="list-group-item">Orbital Period: {orbitalPeriod}</li>
+          <li className="list-group-item">SurfaceWater: {surfaceWater}</li>
+        </ul>
+        <div className="card-footer text-muted">2 days ago</div>
       </div>
     </div>
   );
+};
+
+PlanetView.propTypes = {
+  planet: PropTypes.object.isRequired,
+  onImageError: PropTypes.func.isRequired
 };

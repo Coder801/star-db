@@ -23,5 +23,7 @@
         "react"
     ],
     "rules": {
+      "newline-per-chained-call": 1
+      
     }
 }

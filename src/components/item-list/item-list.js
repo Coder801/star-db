@@ -1,19 +1,57 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
+
+import Spinner from "../spinner";
+
+import SwapiService from "../../services/swapi";
 
 export default class ItemList extends Component {
+  state = {
+    people: null
+  };
+
+  swapiService = new SwapiService();
+
+  componentDidMount() {
+    this.swapiService.getAllPeople().then(people => {
+      this.setState({
+        people
+      });
+      this.props.onPeopleLoaded(people[0].id);
+    });
+  }
+
+  onPersonSelected = id => {
+    this.props.onPersonSelected(id);
+  };
+
+  personItems = people =>
+    people.map(({ id, name }) => (
+      <span
+        key={id}
+        onClick={() => {
+          this.onPersonSelected(id);
+        }}
+        className="list-group-item list-group-item-action"
+      >
+        {name}
+      </span>
+    ));
+
   render() {
-    return (
-      <div className="list-group">
-        <a href="#" className="list-group-item list-group-item-action active">
-          Cras justo odio
-        </a>
-        <a href="#" className="list-group-item list-group-item-action">
-          Dapibus ac facilisis in
-        </a>
-        <a href="#" className="list-group-item list-group-item-action disabled">
-          Morbi leo risus
-        </a>
-      </div>
-    );
+    const { people } = this.state;
+
+    if (!people) {
+      return <Spinner />;
+    }
+
+    const items = this.personItems(people);
+
+    return <div className="list-group">{items}</div>;
   }
 }
+
+ItemList.propTypes = {
+  onPersonSelected: PropTypes.func.isRequired,
+  onPeopleLoaded: PropTypes.func.isRequired
+};
