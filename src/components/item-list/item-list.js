@@ -3,55 +3,85 @@ import PropTypes from "prop-types";
 
 import Spinner from "../spinner";
 
-import SwapiService from "../../services/swapi";
-
+import "./style.css";
 export default class ItemList extends Component {
   state = {
-    people: null
+    listItems: null,
+    loading: true,
+    selected: 1
   };
 
-  swapiService = new SwapiService();
-
   componentDidMount() {
-    this.swapiService.getAllPeople().then(people => {
+    const { selected } = this.state;
+    const { getData, onItemsLoaded } = this.props;
+
+    getData().then(data => {
       this.setState({
-        people
+        listItems: data,
+        loading: false
       });
-      this.props.onPeopleLoaded(people[0].id);
+      onItemsLoaded(selected);
     });
   }
 
-  onPersonSelected = id => {
-    this.props.onPersonSelected(id);
+  onItemSelected = id => {
+    const { onItemSelected } = this.props;
+
+    this.setState({
+      selected: id
+    });
+    onItemSelected(id);
   };
 
-  personItems = people =>
-    people.map(({ id, name }) => (
-      <span
-        key={id}
-        onClick={() => {
-          this.onPersonSelected(id);
-        }}
-        className="list-group-item list-group-item-action"
-      >
-        {name}
-      </span>
-    ));
-
   render() {
-    const { people } = this.state;
+    const { listItems, loading, selected } = this.state;
+    const { onRender } = this.props;
+    const list = (
+      <List
+        listItems={listItems}
+        selected={selected}
+        onRender={onRender}
+        onItemSelected={this.onItemSelected}
+      />
+    );
 
-    if (!people) {
-      return <Spinner />;
-    }
+    const spinner = <Spinner />;
 
-    const items = this.personItems(people);
-
-    return <div className="list-group">{items}</div>;
+    return !loading ? list : spinner;
   }
 }
 
+const List = ({ listItems, selected, onItemSelected, onRender }) => {
+  const items = (listItems, selected) =>
+    listItems.map(item => {
+      const { id } = item;
+      const label = onRender(item);
+      const active = selected === id ? "active" : "";
+
+      return (
+        <li
+          key={id}
+          onClick={onItemSelected.bind(null, id)}
+          className={`list-group-item ${active}`}
+        >
+          {label}
+        </li>
+      );
+    });
+
+  return <ul className="list-group item-list">{items(listItems, selected)}</ul>;
+};
+
+List.propTypes = {
+  listItems: PropTypes.array,
+  onRender: PropTypes.func.isRequired,
+  selected: PropTypes.number.isRequired,
+  onItemSelected: PropTypes.func.isRequired
+};
+
 ItemList.propTypes = {
-  onPersonSelected: PropTypes.func.isRequired,
-  onPeopleLoaded: PropTypes.func.isRequired
+  getData: PropTypes.func.isRequired,
+  onRender: PropTypes.func.isRequired,
+  onItemSelected: PropTypes.func.isRequired,
+  onItemsLoaded: PropTypes.func.isRequired
 };

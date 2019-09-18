@@ -63,32 +63,40 @@ const Details = ({ person }) => {
   } = person;
 
   return (
-    <React.Fragment>
-      <div className="col-lg-5 col-sm-12 d-flex flex-column">
-        <img
-          className="details-image"
-          src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`}
-          alt={name}
-        />
+    <div className="card">
+      <img
+        className="card-img-top"
+        src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`}
+        alt={name}
+      />
+      <div className="card-body">
+        <h5 className="card-title text-white mb-0">{name}</h5>
       </div>
-      <div className="col-lg-7 col-sm-12 d-flex flex-column">
-        <ul className="details-list list-group list-group-flush">
-          <li className="list-group-item">
-            <h5 className="mb-0 pt-2 pb-2">{name}</h5>
-          </li>
-          <li className="list-group-item">Height: {height}cm</li>
-          <li className="list-group-item">Mass: {mass}kg</li>
-          <li className="list-group-item">Hair color: {hairColor}</li>
-          <li className="list-group-item">Skin color: {skinColor}</li>
-          <li className="list-group-item">Eye color: {eyeColor}</li>
-          <li className="list-group-item">Birth year: {birthYear}</li>
-          <li className="list-group-item">Gender: {gender}</li>
-        </ul>
+      <ul className="list-group list-group-flush">
+        <li className="list-group-item">Height: {height}cm</li>
+        <li className="list-group-item">Mass: {mass}kg</li>
+        <li className="list-group-item">Hair color: {hairColor}</li>
+        <li className="list-group-item">Skin color: {skinColor}</li>
+        <li className="list-group-item">Eye color: {eyeColor}</li>
+        <li className="list-group-item">Birth year: {birthYear}</li>
+        <li className="list-group-item">Gender: {gender}</li>
+      </ul>
+      <div className="card-body">
+        <a href="#" className="card-link">
+          Card link
+        </a>
+        <a href="#" className="card-link">
+          Another link
+        </a>
       </div>
-    </React.Fragment>
+    </div>
   );
 };
 
 PersonDetails.propTypes = {
-  personId: PropTypes.number.isRequired
+  personId: PropTypes.number
+};
+
+Details.propTypes = {
+  person: PropTypes.object.isRequired
 };

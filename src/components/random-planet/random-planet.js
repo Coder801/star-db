@@ -13,68 +13,70 @@ export default class RandomPlanet extends Component {
   state = {
     planet: {},
     loading: true,
-    error: false
+    hasError: false
   };
 
   swapiService = new SwapiService();
 
   componentDidMount() {
     this.updatePlanet();
+    this.interval = setInterval(this.updatePlanet, 10000);
   }
 
-  onImageError = () => {
-    this.setState(state => ({
-      ...state,
-      planet: {
-        ...state.planet,
-        image: "https://starwars-visualguide.com/assets/img/placeholder.jpg"
-      }
-    }));
-  };
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
+
+  componentDidCatch() {
+    this.setState({
+      hasError: true
+    });
+  }
 
   onError = () => {
     this.setState({
-      error: true,
+      hasError: true,
       loading: false
     });
+  };
+
+  onImageError = event => {
+    event.target.src =
+      "https://starwars-visualguide.com/assets/img/placeholder.jpg";
   };
 
   onPlanetLoaded = planet => {
     this.setState({ planet, loading: false });
   };
 
-  async updatePlanet() {
+  updatePlanet = async () => {
     const totalPlanets = await this.swapiService.getTotalPlanets();
     const id = random(1, totalPlanets);
     this.swapiService
       .getPlanet(id)
       .then(this.onPlanetLoaded)
       .catch(this.onError);
-  }
+  };
 
   render() {
-    const { planet, loading, error } = this.state;
-    const hasData = !(loading || error);
+    const { planet, loading, hasError } = this.state;
 
-    const errorMessage = error ? <ErrorIndicator /> : null;
-    const spinner = loading ? <Spinner /> : null;
-    const content = hasData ? (
+    if (hasError) {
+      return <ErrorIndicator />;
+    }
+
+    const content = !loading ? (
       <PlanetView planet={planet} onImageError={this.onImageError} />
-    ) : null;
-
-    return (
-      <React.Fragment>
-        {spinner}
-        {errorMessage}
-        {content}
-      </React.Fragment>
+    ) : (
+      <Spinner />
     );
+
+    return <div className="bg-light">{content}</div>;
   }
 }
 
 const PlanetView = ({ planet, onImageError }) => {
   const {
-    id,
     image,
     name,
     population,
@@ -88,27 +90,30 @@ const PlanetView = ({ planet, onImageError }) => {
   } = planet;
 
   return (
-    <div>
-      <div className="card">
-        <h5 className="card-header">{name}</h5>
-        <img
-          className="card-img-top"
-          alt={name}
-          onError={onImageError}
-          src={image}
-        />
-        <ul className="list-group list-group-flush">
-          <li className="list-group-item">Population: {population}</li>
-          <li className="list-group-item">Climate: {climate}</li>
-          <li className="list-group-item">Rotation Period: {rotationPeriod}</li>
-          <li className="list-group-item">Gravity: {gravity}</li>
-          <li className="list-group-item">Diameter: {diameter}</li>
-          <li className="list-group-item">Terrain: {terrain}</li>
-          <li className="list-group-item">Orbital Period: {orbitalPeriod}</li>
-          <li className="list-group-item">SurfaceWater: {surfaceWater}</li>
-        </ul>
-        <div className="card-footer text-muted">2 days ago</div>
+    <div className="card">
+      <div className="card-header">
+        <h5 className="text-white mb-0">Random planet</h5>
       </div>
+      <img
+        className="card-img-top"
+        alt={name}
+        onError={onImageError}
+        src={image}
+      />
+      <div className="card-body">
+        <h5 className="card-title text-white mb-0">{name}</h5>
+      </div>
+      <ul className="list-group list-group-flush">
+        <li className="list-group-item">Population: {population}</li>
+        <li className="list-group-item">Climate: {climate}</li>
+        <li className="list-group-item">Rotation Period: {rotationPeriod}</li>
+        <li className="list-group-item">Gravity: {gravity}</li>
+        <li className="list-group-item">Diameter: {diameter}</li>
+        <li className="list-group-item">Terrain: {terrain}</li>
+        <li className="list-group-item">Orbital Period: {orbitalPeriod}</li>
+        <li className="list-group-item">SurfaceWater: {surfaceWater}</li>
+      </ul>
+      <div className="card-footer text-muted">2 days ago</div>
     </div>
   );
 };

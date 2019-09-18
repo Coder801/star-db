@@ -1,0 +1,4 @@
+.item-list .list-group-item.active:hover {
+  color: #fff;
+  background-color: #2A9FD6;
+}
