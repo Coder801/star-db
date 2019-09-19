@@ -1,18 +1,20 @@
 export default class SwapiService {
-  constructor() {
-    this.apiBase = "https://swapi.co/api";
-  }
+  _apiBase = "https://swapi.co/api";
+  _imgBase = "https://starwars-visualguide.com/assets/img";
 
   _extractIdFromUrl(url) {
     return parseInt(url.match(/\/([0-9]*)\/$/)[1]);
+  }
+
+  _getImageUrl(base, type, id) {
+    return `${base}/${type}/${id}.jpg`;
   }
 
   _transformPlanet = planet => {
     const id = this._extractIdFromUrl(planet.url);
     return {
       id,
-      url: planet.url,
-      image: `https://starwars-visualguide.com/assets/img/planets/${id}.jpg`,
+      image: this._getImageUrl(this._imgBase, "planets", id),
       name: planet.name,
       diameter: planet.diameter,
       population: planet.population,
@@ -29,7 +31,7 @@ export default class SwapiService {
     const id = this._extractIdFromUrl(person.url);
     return {
       id,
-      image: `https://starwars-visualguide.com/assets/img/person/${id}.jpg`,
+      image: this._getImageUrl(this._imgBase, "characters", id),
       name: person.name,
       height: person.height,
       mass: person.mass,
@@ -42,7 +44,7 @@ export default class SwapiService {
   };
 
   async getResource(url) {
-    const response = await fetch(`${this.apiBase}${url}`);
+    const response = await fetch(`${this._apiBase}${url}`);
     if (!response.ok) {
       throw new Error(`Could not fetch ${url}, received ${response.status}`);
     }
@@ -62,12 +64,12 @@ export default class SwapiService {
 
   getAllPlanets = async () => {
     const response = await this.getResource("/planets/");
-    return response.results;
+    return response.results.map(planet => this._transformPlanet(planet));
   };
 
   getAllStarships = async () => {
     const response = await this.getResource("/starships/");
-    return response.results;
+    return response.results.map(starship => this._transformPlanet(starship));
   };
 
   getPerson = async id => {

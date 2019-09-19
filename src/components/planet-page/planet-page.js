@@ -7,7 +7,7 @@ import SwapiService from "../../services/swapi";
 import ErrorBoundry from "../error-boundry";
 import Row from "../row";
 
-export default class PersonPage extends Component {
+export default class PlanetPage extends Component {
   swapiService = new SwapiService();
 
   state = {
@@ -28,11 +28,11 @@ export default class PersonPage extends Component {
 
   render() {
     const { selected } = this.state;
-    const { getAllPeople, getPerson } = this.swapiService;
-    const itemDetails = <ItemDetails itemId={selected} getData={getPerson} />;
+    const { getAllPlanets, getPlanet } = this.swapiService;
+    const itemDetails = <ItemDetails itemId={selected} getData={getPlanet} />;
     const listItem = (
       <ItemList
-        getData={getAllPeople}
+        getData={getAllPlanets}
         onItemSelected={this.onItemSelected}
         onItemsLoaded={this.onItemsLoaded}
       >

@@ -7,20 +7,21 @@ import "./style.css";
 export default class ItemList extends Component {
   state = {
     listItems: null,
-    loading: true,
-    selected: 1
+    selected: 0,
+    loading: true
   };
 
   componentDidMount() {
     const { selected } = this.state;
-    const { getData, onItemsLoaded } = this.props;
+    const { getData, onItemsLoaded, defaultSelect = selected } = this.props;
 
     getData().then(data => {
       this.setState({
         listItems: data,
-        loading: false
+        loading: false,
+        selected: data[defaultSelect].id
       });
-      onItemsLoaded(selected);
+      onItemsLoaded(this.state.selected);
     });
   }
 
@@ -61,7 +62,7 @@ const List = ({ listItems, selected, onItemSelected, onRender }) => {
         <li
           key={id}
           onClick={onItemSelected.bind(null, id)}
-          className={`list-group-item ${active}`}
+          className={`list-group-item ${active} ${id}`}
         >
           {label}
         </li>
@@ -71,16 +72,17 @@ const List = ({ listItems, selected, onItemSelected, onRender }) => {
   return <ul className="list-group item-list">{items(listItems, selected)}</ul>;
 };
 
+ItemList.propTypes = {
+  defaultSelect: PropTypes.number,
+  getData: PropTypes.func.isRequired,
+  children: PropTypes.func.isRequired,
+  onItemSelected: PropTypes.func.isRequired,
+  onItemsLoaded: PropTypes.func.isRequired
+};
+
 List.propTypes = {
   listItems: PropTypes.array,
   onRender: PropTypes.func.isRequired,
   selected: PropTypes.number.isRequired,
   onItemSelected: PropTypes.func.isRequired
-};
-
-ItemList.propTypes = {
-  getData: PropTypes.func.isRequired,
-  children: PropTypes.func.isRequired,
-  onItemSelected: PropTypes.func.isRequired,
-  onItemsLoaded: PropTypes.func.isRequired
 };

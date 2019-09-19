@@ -22,5 +22,5 @@ export default class ErrorBoundry extends Component {
 }
 
 ErrorBoundry.propTypes = {
-  children: PropTypes.func.isRequired
+  children: PropTypes.any.isRequired
 };

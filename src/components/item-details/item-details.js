@@ -2,45 +2,42 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 import Spinner from "../spinner";
-import SwapiService from "../../services/swapi";
 
 import "./style.css";
 
-export default class PersonDetails extends Component {
-  swapiServer = new SwapiService();
-
+export default class ItemDetails extends Component {
   state = {
-    person: null
+    item: null
   };
 
   componentDidMount() {
-    this.onPesonUpdate();
+    this.onItemUpdate();
   }
 
   componentDidUpdate(prevState) {
-    if (this.props.personId !== prevState.personId) {
-      this.onPesonUpdate();
+    if (this.props.itemId !== prevState.itemId) {
+      this.onItemUpdate();
     }
   }
 
-  onPesonUpdate = () => {
+  onItemUpdate = () => {
     this.setState({
-      person: null
+      item: null
     });
 
-    const { personId } = this.props;
-    if (personId) {
-      this.swapiServer.getPerson(personId).then(person => {
+    const { itemId, getData } = this.props;
+    if (itemId) {
+      getData(itemId).then(item => {
         this.setState({
-          person
+          item
         });
       });
     }
   };
 
   render() {
-    const details = this.state.person ? (
-      <Details person={this.state.person} />
+    const details = this.state.item ? (
+      <Details item={this.state.item} />
     ) : (
       <Spinner />
     );
@@ -49,9 +46,9 @@ export default class PersonDetails extends Component {
   }
 }
 
-const Details = ({ person }) => {
+const Details = ({ item }) => {
   const {
-    id,
+    image,
     name,
     height,
     mass,
@@ -60,15 +57,11 @@ const Details = ({ person }) => {
     eyeColor,
     birthYear,
     gender
-  } = person;
+  } = item;
 
   return (
     <div className="card">
-      <img
-        className="card-img-top"
-        src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`}
-        alt={name}
-      />
+      <img className="card-img-top" src={image} alt={name} />
       <div className="card-body">
         <h5 className="card-title text-white mb-0">{name}</h5>
       </div>
@@ -82,10 +75,10 @@ const Details = ({ person }) => {
         <li className="list-group-item">Gender: {gender}</li>
       </ul>
       <div className="card-body">
-        <a href="#" className="card-link">
+        <a href="/" className="card-link">
           Card link
         </a>
-        <a href="#" className="card-link">
+        <a href="/" className="card-link">
           Another link
         </a>
       </div>
@@ -93,10 +86,11 @@ const Details = ({ person }) => {
   );
 };
 
-PersonDetails.propTypes = {
-  personId: PropTypes.number
+ItemDetails.propTypes = {
+  itemId: PropTypes.number,
+  getData: PropTypes.func.isRequired
 };
 
 Details.propTypes = {
-  person: PropTypes.object.isRequired
+  item: PropTypes.object.isRequired
 };
