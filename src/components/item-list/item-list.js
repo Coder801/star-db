@@ -35,12 +35,11 @@ export default class ItemList extends Component {
 
   render() {
     const { listItems, loading, selected } = this.state;
-    const { onRender } = this.props;
     const list = (
       <List
         listItems={listItems}
         selected={selected}
-        onRender={onRender}
+        onRender={this.props.children}
         onItemSelected={this.onItemSelected}
       />
     );
@@ -81,7 +80,7 @@ List.propTypes = {
 
 ItemList.propTypes = {
   getData: PropTypes.func.isRequired,
-  onRender: PropTypes.func.isRequired,
+  children: PropTypes.func.isRequired,
   onItemSelected: PropTypes.func.isRequired,
   onItemsLoaded: PropTypes.func.isRequired
 };

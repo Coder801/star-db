@@ -46,11 +46,12 @@ export default class PersonPage extends Component {
     const personDetails = <PersonDetails personId={selected} />;
     const listItem = (
       <ItemList
-        onRender={({ name }) => `${name}`}
         getData={this.swapiService.getAllPeople}
         onItemSelected={this.onPersonSelected}
         onItemsLoaded={this.onPeopleLoaded}
-      />
+      >
+        {({ name }) => `${name}`}
+      </ItemList>
     );
 
     return (
