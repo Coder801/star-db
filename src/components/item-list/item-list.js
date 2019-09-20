@@ -2,28 +2,15 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 import Spinner from "../spinner";
+import SwapiService from "../../services/swapi";
 
 import "./style.css";
-export default class ItemList extends Component {
+class ItemList extends Component {
   state = {
     listItems: null,
     selected: 0,
     loading: true
   };
-
-  componentDidMount() {
-    const { selected } = this.state;
-    const { getData, onItemsLoaded, defaultSelect = selected } = this.props;
-
-    getData().then(data => {
-      this.setState({
-        listItems: data,
-        loading: false,
-        selected: data[defaultSelect].id
-      });
-      onItemsLoaded(this.state.selected);
-    });
-  }
 
   onItemSelected = id => {
     const { onItemSelected } = this.props;
@@ -71,6 +58,32 @@ const List = ({ listItems, selected, onItemSelected, onRender }) => {
 
   return <ul className="list-group item-list">{items(listItems, selected)}</ul>;
 };
+
+const viewWithData = (View, getDate) => {
+  return class ViewWithData extends Component {
+    componentDidMount() {
+      const { selected } = this.state;
+      const { getData, onItemsLoaded, defaultSelect = selected } = this.props;
+
+      getData().then(data => {
+        this.setState({
+          listItems: data,
+          loading: false,
+          selected: data[defaultSelect].id
+        });
+        onItemsLoaded(this.state.selected);
+      });
+    }
+
+    render() {
+      return <View {...this.props} data={data} />;
+    }
+  };
+};
+
+const { getAllPeople } = new SwapiService();
+
+export default viewWithData(ItemList, getAllPeople);
 
 ItemList.propTypes = {
   defaultSelect: PropTypes.number,

@@ -37,7 +37,7 @@ export default class ItemDetails extends Component {
 
   render() {
     const details = this.state.item ? (
-      <Details item={this.state.item} />
+      <Details item={this.state.item} records={this.props.children} />
     ) : (
       <Spinner />
     );
@@ -46,18 +46,8 @@ export default class ItemDetails extends Component {
   }
 }
 
-const Details = ({ item }) => {
-  const {
-    image,
-    name,
-    height,
-    mass,
-    hairColor,
-    skinColor,
-    eyeColor,
-    birthYear,
-    gender
-  } = item;
+const Details = ({ item, records }) => {
+  const { image, name } = item;
 
   return (
     <div className="card">
@@ -66,25 +56,28 @@ const Details = ({ item }) => {
         <h5 className="card-title text-white mb-0">{name}</h5>
       </div>
       <ul className="list-group list-group-flush">
-        <li className="list-group-item">Height: {height}cm</li>
-        <li className="list-group-item">Mass: {mass}kg</li>
-        <li className="list-group-item">Hair color: {hairColor}</li>
-        <li className="list-group-item">Skin color: {skinColor}</li>
-        <li className="list-group-item">Eye color: {eyeColor}</li>
-        <li className="list-group-item">Birth year: {birthYear}</li>
-        <li className="list-group-item">Gender: {gender}</li>
+        {React.Children.map(records, record =>
+          React.cloneElement(record, { item })
+        )}
       </ul>
       <div className="card-body">
         <a href="/" className="card-link">
-          Card link
-        </a>
-        <a href="/" className="card-link">
-          Another link
+          More details
         </a>
       </div>
     </div>
   );
 };
+
+const Record = ({ item, label, field }) => {
+  return (
+    <li className="list-group-item">
+      {label}: {item[field]}
+    </li>
+  );
+};
+
+export { Record };
 
 ItemDetails.propTypes = {
   itemId: PropTypes.number,
@@ -93,4 +86,10 @@ ItemDetails.propTypes = {
 
 Details.propTypes = {
   item: PropTypes.object.isRequired
+};
+
+Record.propTypes = {
+  item: PropTypes.object.isRequired,
+  label: PropTypes.string.isRequired,
+  field: PropTypes.string.isRequired
 };
