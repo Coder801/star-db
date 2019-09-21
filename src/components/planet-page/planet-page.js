@@ -11,16 +11,10 @@ export default class PlanetPage extends Component {
   swapiService = new SwapiService();
 
   state = {
-    selected: null
+    selected: 2
   };
 
   onItemSelected = id => {
-    this.setState({
-      selected: id
-    });
-  };
-
-  onItemsLoaded = id => {
     this.setState({
       selected: id
     });
@@ -37,9 +31,9 @@ export default class PlanetPage extends Component {
     );
     const listItem = (
       <ItemList
+        selected={selected}
         getData={getAllPlanets}
-        onItemSelected={this.onItemSelected}
-        onItemsLoaded={this.onItemsLoaded}
+        onSelect={this.onItemSelected}
       >
         {({ name }) => `${name}`}
       </ItemList>

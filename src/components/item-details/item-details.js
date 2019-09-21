@@ -85,11 +85,12 @@ ItemDetails.propTypes = {
 };
 
 Details.propTypes = {
-  item: PropTypes.object.isRequired
+  item: PropTypes.object.isRequired,
+  records: PropTypes.array.isRequired
 };
 
 Record.propTypes = {
-  item: PropTypes.object.isRequired,
+  item: PropTypes.object,
   label: PropTypes.string.isRequired,
   field: PropTypes.string.isRequired
 };
