@@ -9,9 +9,7 @@ const viewWithData = View => {
     };
 
     componentDidMount() {
-      const { getData } = this.props;
-
-      getData().then(data => {
+      this.props.getData().then(data => {
         this.setState({
           data
         });
@@ -23,6 +21,7 @@ const viewWithData = View => {
       if (!data) {
         return <Spinner />;
       }
+
       return <View {...this.props} data={data} />;
     }
   };

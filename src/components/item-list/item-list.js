@@ -1,8 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { viewWithData } from "../hoc-helpers";
-
 import "./style.css";
 
 const ItemList = ({ ...props }) => {
@@ -25,10 +23,10 @@ const ItemList = ({ ...props }) => {
   return <ul className="list-group item-list">{renderList(props)}</ul>;
 };
 
-export default viewWithData(ItemList);
+export default ItemList;
 
 ItemList.propTypes = {
-  data: PropTypes.array.isRequired,
+  data: PropTypes.array,
   selected: PropTypes.number.isRequired,
   children: PropTypes.func.isRequired,
   onSelect: PropTypes.func.isRequired
