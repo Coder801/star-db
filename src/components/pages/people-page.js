@@ -1,23 +1,23 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 
-import Row from "../row";
 import ErrorBoundry from "../error-boundry";
 import { SwapiServiceProvider } from "../context";
 import { PersonList, PersonDetails } from "../sw-components";
 
 import SwapiService from "../../services/swapi";
 
-export default class PersonPage extends Component {
-  static propTypes = {
-    left: PropTypes.node,
-    right: PropTypes.node
-  };
-
+export default class PeoplePage extends Component {
   swapiService = new SwapiService();
 
   state = {
-    selected: 1
+    selected: null
+  };
+
+  onGoBack = event => {
+    event.preventDefault();
+    this.setState({
+      selected: null
+    });
   };
 
   onItemSelected = id => {
@@ -28,19 +28,16 @@ export default class PersonPage extends Component {
 
   render() {
     const { selected } = this.state;
+    const content = selected ? (
+      <PersonDetails onGoBack={this.onGoBack} itemId={selected} />
+    ) : (
+      <PersonList onSelect={this.onItemSelected} />
+    );
 
     return (
       <ErrorBoundry>
         <SwapiServiceProvider value={this.swapiService}>
-          {/* <Row
-            left={<PersonDetails itemId={selected} />}
-            right={
-              <PersonList selected={selected} onSelect={this.onItemSelected} />
-            }
-          /> */}
-          <PersonList onSelect={this.onItemSelected} />
-
-          <PersonDetails itemId={selected} />
+          {content}
         </SwapiServiceProvider>
       </ErrorBoundry>
     );

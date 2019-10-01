@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import logo from "./img/logo-header.png";
 
@@ -14,19 +15,19 @@ const Header = () => {
         <div className="navbar-nav-scroll">
           <ul className="navbar-nav bd-navbar-nav flex-row">
             <li className="nav-item active">
-              <a className="nav-link" href="/">
+              <Link to="/people" className="nav-link">
                 People
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/">
-                Spaceships
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/">
+              <Link to="/planets" className="nav-link">
                 Planets
-              </a>
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/starships" className="nav-link">
+                Spaceships
+              </Link>
             </li>
           </ul>
         </div>

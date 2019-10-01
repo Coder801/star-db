@@ -3,6 +3,10 @@ import React from "react";
 import ItemDetails, { Record } from "../item-details";
 import { viewWithSwapiService } from "../hoc-helpers";
 
+const personMethodsToProps = swapiService => ({
+  getData: swapiService.getPerson
+});
+
 const personDetails = props => {
   return (
     <ItemDetails {...props}>
@@ -17,10 +21,55 @@ const personDetails = props => {
   );
 };
 
-const mapMethodsToProps = swapiService => ({
-  getData: swapiService.getPerson
+const planetMethodsToProps = swapiService => ({
+  getData: swapiService.getPlanet
 });
 
-const PersonDetails = viewWithSwapiService(mapMethodsToProps)(personDetails);
+const planetDetails = props => {
+  return (
+    <ItemDetails {...props}>
+      <Record field="name" label="Name" />
+      <Record field="diameter" label="Diameter" />
+      <Record field="population" label="Population" />
+      <Record field="rotationPeriod" label="Rotation Period" />
+      <Record field="orbitalPeriod" label="Orbital Period" />
+      <Record field="climate" label="Climate" />
+      <Record field="gravity" label="Gravity" />
+      <Record field="terrain" label="Terrain" />
+      <Record field="surfaceWater" label="Surface Water" />
+    </ItemDetails>
+  );
+};
 
-export { PersonDetails };
+const starshipMethodsToProps = swapiService => ({
+  getData: swapiService.getStarship
+});
+
+const starshipDetails = props => {
+  return (
+    <ItemDetails {...props}>
+      <Record field="mglt" label="MGLT" />
+      <Record field="cargoCapacity" label="Cargo Capacity" />
+      <Record field="consumables" label="Consumables" />
+      <Record field="costInCredits" label="Cost In Credits" />
+      <Record field="created" label="Created" />
+      <Record field="crew" label="Crew" />
+      <Record field="edited" label="Edited" />
+      <Record field="hyperdriveRating" label="Hyperdrive Rating" />
+      <Record field="length" label="Length" />
+      <Record field="manufacturer" label="Manufacturer" />
+      <Record field="maxAtmospheringSpeed" label="Max Atmosphering Speed" />
+      <Record field="model" label="Model" />
+      <Record field="name" label="Name" />
+      <Record field="passengers" label="Passengers" />
+    </ItemDetails>
+  );
+};
+
+const PersonDetails = viewWithSwapiService(personMethodsToProps)(personDetails);
+const PlanetDetails = viewWithSwapiService(planetMethodsToProps)(planetDetails);
+const StarshipDetails = viewWithSwapiService(starshipMethodsToProps)(
+  starshipDetails
+);
+
+export { PersonDetails, PlanetDetails, StarshipDetails };

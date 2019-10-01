@@ -9,6 +9,7 @@ class ItemDetails extends Component {
     data: PropTypes.object,
     itemId: PropTypes.number.isRequired,
     getData: PropTypes.func.isRequired,
+    onGoBack: PropTypes.func.isRequired,
     children: PropTypes.node
   };
 
@@ -27,10 +28,6 @@ class ItemDetails extends Component {
   }
 
   onItemUpdate = () => {
-    this.setState({
-      data: null
-    });
-
     const { itemId, getData } = this.props;
 
     if (itemId) {
@@ -43,10 +40,20 @@ class ItemDetails extends Component {
   };
 
   render() {
-    const { children } = this.props;
+    const { children, onGoBack } = this.props;
     const { data } = this.state;
 
-    return data ? <Details data={data} records={children} /> : <Spinner />;
+    return data ? (
+      <Details
+        name={data.name}
+        image={data.image}
+        data={data}
+        records={children}
+        onGoBack={onGoBack}
+      />
+    ) : (
+      <Spinner />
+    );
   }
 }
 
@@ -56,7 +63,7 @@ const Record = ({ data, label, field }) => (
   </li>
 );
 
-const Details = ({ data, data: { name, image }, records }) => (
+const Details = ({ name, image, data, records, onGoBack }) => (
   <div className="item-details row no-gutters">
     <div className="card col-sm-5 bg-light">
       <img className="card-img" src={image} alt={name} />
@@ -71,8 +78,8 @@ const Details = ({ data, data: { name, image }, records }) => (
         )}
       </ul>
       <div className="card-body">
-        <a href="/" className="btn btn-primary card-link">
-          Back
+        <a href="/" className="btn btn-primary card-link" onClick={onGoBack}>
+          Go Back
         </a>
       </div>
     </div>
@@ -80,8 +87,11 @@ const Details = ({ data, data: { name, image }, records }) => (
 );
 
 Details.propTypes = {
+  name: PropTypes.string,
+  image: PropTypes.string,
   data: PropTypes.object,
-  records: PropTypes.node
+  records: PropTypes.node,
+  onGoBack: PropTypes.func
 };
 
 Record.propTypes = {

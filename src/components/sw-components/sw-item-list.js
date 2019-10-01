@@ -8,8 +8,16 @@ import {
   viewWithSwapiService
 } from "../hoc-helpers";
 
-const mapPersonMethodToProps = swapiService => ({
+const personsMethodToProps = swapiService => ({
   getData: swapiService.getAllPeople
+});
+
+const planetsMethodToProps = swapiService => ({
+  getData: swapiService.getAllPlanets
+});
+
+const starshipsMethodToProps = swapiService => ({
+  getData: swapiService.getAllStarships
 });
 
 const ListItemFormat = ({ name, image }) => (
@@ -22,9 +30,21 @@ const ListItemFormat = ({ name, image }) => (
 );
 
 const PersonList = compose(
-  viewWithSwapiService(mapPersonMethodToProps),
+  viewWithSwapiService(personsMethodToProps),
   viewWithData,
   viewWithFunc(ListItemFormat)
 )(ItemList);
 
-export { PersonList };
+const PlanetList = compose(
+  viewWithSwapiService(planetsMethodToProps),
+  viewWithData,
+  viewWithFunc(ListItemFormat)
+)(ItemList);
+
+const StarshipList = compose(
+  viewWithSwapiService(starshipsMethodToProps),
+  viewWithData,
+  viewWithFunc(ListItemFormat)
+)(ItemList);
+
+export { PersonList, PlanetList, StarshipList };
