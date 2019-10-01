@@ -57,9 +57,11 @@ const Record = ({ data, label, field }) => (
 );
 
 const Details = ({ data, data: { name, image }, records }) => (
-  <div className="row no-gutters bg-light">
-    <div className="card">
-      <img className="card-img-top" src={image} alt={name} />
+  <div className="item-details row no-gutters">
+    <div className="card col-sm-5 bg-light">
+      <img className="card-img" src={image} alt={name} />
+    </div>
+    <div className="card col-sm-7 bg-light">
       <div className="card-body">
         <h5 className="card-title text-white mb-0">{name}</h5>
       </div>
@@ -69,8 +71,8 @@ const Details = ({ data, data: { name, image }, records }) => (
         )}
       </ul>
       <div className="card-body">
-        <a href="/" className="card-link">
-          More details
+        <a href="/" className="btn btn-primary card-link">
+          Back
         </a>
       </div>
     </div>

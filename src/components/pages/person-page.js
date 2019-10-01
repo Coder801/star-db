@@ -32,12 +32,15 @@ export default class PersonPage extends Component {
     return (
       <ErrorBoundry>
         <SwapiServiceProvider value={this.swapiService}>
-          <Row
+          {/* <Row
             left={<PersonDetails itemId={selected} />}
             right={
               <PersonList selected={selected} onSelect={this.onItemSelected} />
             }
-          />
+          /> */}
+          <PersonList onSelect={this.onItemSelected} />
+
+          <PersonDetails itemId={selected} />
         </SwapiServiceProvider>
       </ErrorBoundry>
     );

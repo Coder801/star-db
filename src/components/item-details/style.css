@@ -1,7 +1,6 @@
-.details-image {
-  max-width: 100%;
+.item-details {
+  margin-bottom: 10px;
 }
-
-.details-list li {
-  padding: 0.5rem 1rem;
+.item-details .card-body {
+  flex: none;
 }
