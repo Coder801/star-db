@@ -2,12 +2,12 @@ import React, { Component } from "react";
 
 import Header from "../header";
 import RandomPlanet from "../random-planet";
-import PersonPage from "../person-page";
+import PersonPage from "../pages";
 
 export default class App extends Component {
   render() {
     return (
-      <div className="container">
+      <div className="sw-app container">
         <Header />
 
         <div className="row mb-3">

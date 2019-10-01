@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 
-const viewWithFunc = (View, func = ({ name }) => `${name}`) => {
-  return class ViewWithFunction extends Component {
+const viewWithFunc = (Wrapper, func = ({ name }) => `${name}`) => {
+  return class extends Component {
     render() {
-      return <View {...this.props}>{func}</View>;
+      return <Wrapper {...this.props}>{func}</Wrapper>;
     }
   };
 };

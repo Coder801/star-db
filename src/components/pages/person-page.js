@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 
-import ErrorBoundry from "../error-boundry";
 import Row from "../row";
-import { PersonList, PersonDetails } from "../sw-components";
+import ErrorBoundry from "../error-boundry";
 import { SwapiServiceProvider } from "../context";
+import { PersonList, PersonDetails } from "../sw-components";
 
 import SwapiService from "../../services/swapi";
 
@@ -22,16 +22,16 @@ export default class PersonPage extends Component {
 
   render() {
     const { selected } = this.state;
-    const personList = (
-      <PersonList selected={selected} onSelect={this.onItemSelected} />
-    );
-
-    const personDetails = <PersonDetails itemId={this.state.selected} />;
 
     return (
       <ErrorBoundry>
         <SwapiServiceProvider value={this.swapiService}>
-          <Row left={personDetails} right={personList} />
+          <Row
+            left={<PersonDetails itemId={selected} />}
+            right={
+              <PersonList selected={selected} onSelect={this.onItemSelected} />
+            }
+          />
         </SwapiServiceProvider>
       </ErrorBoundry>
     );
