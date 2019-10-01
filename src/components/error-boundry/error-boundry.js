@@ -4,6 +4,10 @@ import PropTypes from "prop-types";
 import ErrorIndicator from "../error-indicator";
 
 export default class ErrorBoundry extends Component {
+  static propTypes = {
+    children: PropTypes.element
+  };
+
   state = {
     hasError: false
   };
@@ -20,7 +24,3 @@ export default class ErrorBoundry extends Component {
     return !hasError ? this.props.children : <ErrorIndicator />;
   }
 }
-
-ErrorBoundry.propTypes = {
-  children: PropTypes.any.isRequired
-};

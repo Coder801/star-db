@@ -1,11 +1,12 @@
-import React, { Component } from "react";
+import React from "react";
 
-const viewWithFunc = (Wrapper, func = ({ name }) => `${name}`) => {
-  return class extends Component {
-    render() {
-      return <Wrapper {...this.props}>{func}</Wrapper>;
+const viewWithFunc = (fn = ({ name }) => `${name}`) => (
+  (Wrapper) => {
+    return (props) => {
+      return <Wrapper {...props}>{fn}</Wrapper>
     }
-  };
-};
+  }
+)
+
 
 export default viewWithFunc;

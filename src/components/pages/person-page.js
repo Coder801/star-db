@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 import Row from "../row";
 import ErrorBoundry from "../error-boundry";
@@ -8,6 +9,11 @@ import { PersonList, PersonDetails } from "../sw-components";
 import SwapiService from "../../services/swapi";
 
 export default class PersonPage extends Component {
+  static propTypes = {
+    left: PropTypes.node,
+    right: PropTypes.node
+  };
+
   swapiService = new SwapiService();
 
   state = {

@@ -1,3 +1,5 @@
+import { compose } from "ramda";
+
 import ItemList from "../item-list";
 import {
   viewWithData,
@@ -9,11 +11,10 @@ const mapPersonMethodToProps = swapiService => ({
   getData: swapiService.getAllPeople
 });
 
-const PersonList = viewWithSwapiService(
-  viewWithData(viewWithFunc(ItemList)),
-  mapPersonMethodToProps
-);
-const PlanetList = viewWithData(viewWithFunc(ItemList));
-const StarshipList = viewWithData(viewWithFunc(ItemList));
+const PersonList = compose(
+  viewWithSwapiService(mapPersonMethodToProps),
+  viewWithData,
+  viewWithFunc()
+)(ItemList);
 
-export { PersonList, PlanetList, StarshipList };
+export { PersonList };

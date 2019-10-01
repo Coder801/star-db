@@ -6,8 +6,8 @@ import { viewWithSwapiService } from "../hoc-helpers";
 const personDetails = props => {
   return (
     <ItemDetails {...props}>
-      <Record field="height" label="Height" />
-      <Record field="mass" label="Mass" />
+      <Record field="gender" label="Gender" />
+      <Record field="birthYear" label="Birth Year" />
     </ItemDetails>
   );
 };
@@ -16,6 +16,6 @@ const mapMethodsToProps = swapiService => ({
   getData: swapiService.getPerson
 });
 
-const PersonDetails = viewWithSwapiService(personDetails, mapMethodsToProps);
+const PersonDetails = viewWithSwapiService(mapMethodsToProps)(personDetails);
 
 export { PersonDetails };

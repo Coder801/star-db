@@ -5,6 +5,13 @@ import Spinner from "../spinner";
 import "./style.css";
 
 class ItemDetails extends Component {
+  static propTypes = {
+    data: PropTypes.object,
+    itemId: PropTypes.number.isRequired,
+    getData: PropTypes.func.isRequired,
+    children: PropTypes.node
+  };
+
   state = {
     data: null
   };
@@ -70,21 +77,15 @@ const Details = ({ data, data: { name, image }, records }) => (
   </div>
 );
 
-ItemDetails.propTypes = {
-  data: PropTypes.object,
-  itemId: PropTypes.number.isRequired,
-  children: PropTypes.any
-};
-
 Details.propTypes = {
   data: PropTypes.object,
-  records: PropTypes.any
+  records: PropTypes.node
 };
 
 Record.propTypes = {
   data: PropTypes.object,
-  label: PropTypes.string.isRequired,
-  field: PropTypes.string.isRequired
+  label: PropTypes.string,
+  field: PropTypes.string
 };
 
 export default ItemDetails;
