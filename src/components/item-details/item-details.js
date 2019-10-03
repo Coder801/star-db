@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Spinner from "../spinner";
 
-import "./style.css";
+import style from "./style.module.css";
 
 class ItemDetails extends Component {
   static propTypes = {
@@ -56,30 +56,23 @@ class ItemDetails extends Component {
 }
 
 const Record = ({ data, label, field }) => (
-  <li className="list-group-item">
-    {label}: {data[field]}
+  <li className={style.item}>
+    <span>{label}:</span> {data[field]}
   </li>
 );
 
 const Details = ({ name, image, data, records }) => (
-  <div className="item-details row no-gutters">
-    <div className="card col-sm-5 bg-light">
-      <img className="card-img" src={image} alt={name} />
-    </div>
-    <div className="card col-sm-7 bg-light">
-      <div className="card-body">
-        <h5 className="card-title text-white mb-0">{name}</h5>
-      </div>
-      <ul className="list-group list-group-flush">
+  <div className={style.details}>
+    <figure className={style.figure}>
+      <img className={style.image} src={image} alt={name} />
+    </figure>
+    <div className={style.description}>
+      <h3 className={style.title}>{name}</h3>
+      <ul className={style.list}>
         {React.Children.map(records, record =>
           React.cloneElement(record, { data })
         )}
       </ul>
-      <div className="card-body">
-        <a href="/" className="btn btn-primary card-link">
-          Go Back
-        </a>
-      </div>
     </div>
   </div>
 );

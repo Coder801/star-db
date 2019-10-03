@@ -1,18 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import "./style.css";
+import style from "./style.module.css";
 
 const Spinner = ({ size = 6 }) => {
-  const style = {
+  const inlineStyle = {
     width: `${size}rem`,
     height: `${size}rem`
   };
   return (
-    <div className="spinner-wrapper d-flex justify-content-center">
-      <div className="spinner-border text-dark" style={style} role="status">
-        <span className="sr-only">Loading...</span>
-      </div>
+    <div className={style.spinner}>
+      <div className={style.loader} style={inlineStyle} role="status"></div>
     </div>
   );
 };

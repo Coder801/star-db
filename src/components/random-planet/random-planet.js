@@ -7,7 +7,7 @@ import ErrorIndicator from "../error-indicator";
 import SwapiService from "../../services/swapi";
 import random from "../../services/random";
 
-import "./style.css";
+import style from "./style.module.css";
 
 export default class RandomPlanet extends Component {
   state = {
@@ -90,30 +90,41 @@ const PlanetView = ({ planet, onImageError }) => {
   } = planet;
 
   return (
-    <div className="card">
-      <div className="card-header">
-        <h5 className="text-white mb-0">Random planet</h5>
-      </div>
+    <div className={style.card}>
+      <h2 className={style.title}>Random planet</h2>
       <img
-        className="card-img-top"
+        className={style.image}
         alt={name}
         onError={onImageError}
         src={image}
       />
-      <div className="card-body">
-        <h5 className="card-title text-white mb-0">{name}</h5>
-      </div>
-      <ul className="list-group list-group-flush">
-        <li className="list-group-item">Population: {population}</li>
-        <li className="list-group-item">Climate: {climate}</li>
-        <li className="list-group-item">Rotation Period: {rotationPeriod}</li>
-        <li className="list-group-item">Gravity: {gravity}</li>
-        <li className="list-group-item">Diameter: {diameter}</li>
-        <li className="list-group-item">Terrain: {terrain}</li>
-        <li className="list-group-item">Orbital Period: {orbitalPeriod}</li>
-        <li className="list-group-item">SurfaceWater: {surfaceWater}</li>
+      <h3 className={style.name}>{name}</h3>
+      <ul className={style.list}>
+        <li>
+          <span>Population:</span> {population}
+        </li>
+        <li>
+          <span>Climate:</span> {climate}
+        </li>
+        <li>
+          <span>Rotation Period:</span> {rotationPeriod}
+        </li>
+        <li>
+          <span>Gravity:</span> {gravity}
+        </li>
+        <li>
+          <span>Diameter:</span> {diameter}
+        </li>
+        <li>
+          <span>Terrain:</span> {terrain}
+        </li>
+        <li>
+          <span>Orbital Period:</span> {orbitalPeriod}
+        </li>
+        <li>
+          <span>SurfaceWater:</span> {surfaceWater}
+        </li>
       </ul>
-      <div className="card-footer text-muted">2 days ago</div>
     </div>
   );
 };

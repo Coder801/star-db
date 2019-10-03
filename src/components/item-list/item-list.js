@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import "./style.css";
+import style from "./style.module.css";
 
 const ItemList = ({ ...props }) => {
   const renderList = ({ data, onSelect, children: labelOutput }) =>
@@ -9,13 +9,13 @@ const ItemList = ({ ...props }) => {
       const { id } = item;
 
       return (
-        <div className="card" key={id} onClick={() => onSelect(id)}>
+        <div className={style.item} key={id} onClick={() => onSelect(id)}>
           {labelOutput(item)}
         </div>
       );
     });
 
-  return <div className="row item-list">{renderList(props)}</div>;
+  return <div className={style.list}>{renderList(props)}</div>;
 };
 
 export default ItemList;

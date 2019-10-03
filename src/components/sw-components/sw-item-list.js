@@ -18,10 +18,8 @@ const starshipsMethodToProps = swapiService => ({
 
 const ListItemFormat = ({ name, image }) => (
   <React.Fragment>
-    <img src={image} className="card-img-top" alt={name}></img>
-    <div className="card-body">
-      <p className="card-title">{name}</p>
-    </div>
+    <img src={image} alt={name}></img>
+    <h4>{name}</h4>
   </React.Fragment>
 );
 
