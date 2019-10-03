@@ -1,45 +1,22 @@
-import React, { Component } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 
-import ErrorBoundry from "../error-boundry";
-import { SwapiServiceProvider } from "../context";
-import { PlanetList, PlanetDetails } from "../sw-components";
+import { PlanetList } from "../sw-components";
+import { withRouter } from "react-router-dom";
 
-import SwapiService from "../../services/swapi";
+const PlanetPage = ({ history }) => {
+  return (
+    <PlanetList
+      onSelect={id => {
+        const newPath = `/planets/${id}`;
+        history.push(newPath);
+      }}
+    />
+  );
+};
 
-export default class PlanetPage extends Component {
-  swapiService = new SwapiService();
+PlanetPage.propTypes = {
+  history: PropTypes.object
+};
 
-  state = {
-    selected: null
-  };
-
-  onGoBack = event => {
-    event.preventDefault();
-    this.setState({
-      selected: null
-    });
-  };
-
-  onItemSelected = id => {
-    this.setState({
-      selected: id
-    });
-  };
-
-  render() {
-    const { selected } = this.state;
-    const content = selected ? (
-      <PlanetDetails onGoBack={this.onGoBack} itemId={selected} />
-    ) : (
-      <PlanetList onSelect={this.onItemSelected} />
-    );
-
-    return (
-      <ErrorBoundry>
-        <SwapiServiceProvider value={this.swapiService}>
-          {content}
-        </SwapiServiceProvider>
-      </ErrorBoundry>
-    );
-  }
-}
+export default withRouter(PlanetPage);

@@ -1,45 +1,22 @@
-import React, { Component } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 
-import ErrorBoundry from "../error-boundry";
-import { SwapiServiceProvider } from "../context";
-import { PersonList, PersonDetails } from "../sw-components";
+import { PersonList } from "../sw-components";
+import { withRouter } from "react-router-dom";
 
-import SwapiService from "../../services/swapi";
+const PeoplePage = ({ history }) => {
+  return (
+    <PersonList
+      onSelect={id => {
+        const newPath = `/people/${id}`;
+        history.push(newPath);
+      }}
+    />
+  );
+};
 
-export default class PeoplePage extends Component {
-  swapiService = new SwapiService();
+PeoplePage.propTypes = {
+  history: PropTypes.object
+};
 
-  state = {
-    selected: null
-  };
-
-  onGoBack = event => {
-    event.preventDefault();
-    this.setState({
-      selected: null
-    });
-  };
-
-  onItemSelected = id => {
-    this.setState({
-      selected: id
-    });
-  };
-
-  render() {
-    const { selected } = this.state;
-    const content = selected ? (
-      <PersonDetails onGoBack={this.onGoBack} itemId={selected} />
-    ) : (
-      <PersonList onSelect={this.onItemSelected} />
-    );
-
-    return (
-      <ErrorBoundry>
-        <SwapiServiceProvider value={this.swapiService}>
-          {content}
-        </SwapiServiceProvider>
-      </ErrorBoundry>
-    );
-  }
-}
+export default withRouter(PeoplePage);

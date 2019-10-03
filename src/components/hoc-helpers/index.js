@@ -1,5 +1,5 @@
-import viewWithFunc from "./viewWithFunc";
-import viewWithData from "./viewWithData";
-import viewWithSwapiService from "./viewWithSwapiService";
+import withFunc from "./withFunc";
+import withData from "./withData";
+import withSwapiService from "./withSwapiService";
 
-export { viewWithFunc, viewWithData, viewWithSwapiService };
+export { withFunc, withData, withSwapiService };

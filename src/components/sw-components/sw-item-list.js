@@ -2,11 +2,7 @@ import { compose } from "ramda";
 import React from "react";
 
 import ItemList from "../item-list";
-import {
-  viewWithData,
-  viewWithFunc,
-  viewWithSwapiService
-} from "../hoc-helpers";
+import { withData, withFunc, withSwapiService } from "../hoc-helpers";
 
 const personsMethodToProps = swapiService => ({
   getData: swapiService.getAllPeople
@@ -30,21 +26,21 @@ const ListItemFormat = ({ name, image }) => (
 );
 
 const PersonList = compose(
-  viewWithSwapiService(personsMethodToProps),
-  viewWithData,
-  viewWithFunc(ListItemFormat)
+  withSwapiService(personsMethodToProps),
+  withData,
+  withFunc(ListItemFormat)
 )(ItemList);
 
 const PlanetList = compose(
-  viewWithSwapiService(planetsMethodToProps),
-  viewWithData,
-  viewWithFunc(ListItemFormat)
+  withSwapiService(planetsMethodToProps),
+  withData,
+  withFunc(ListItemFormat)
 )(ItemList);
 
 const StarshipList = compose(
-  viewWithSwapiService(starshipsMethodToProps),
-  viewWithData,
-  viewWithFunc(ListItemFormat)
+  withSwapiService(starshipsMethodToProps),
+  withData,
+  withFunc(ListItemFormat)
 )(ItemList);
 
 export { PersonList, PlanetList, StarshipList };

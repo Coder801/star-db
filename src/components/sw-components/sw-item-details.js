@@ -1,7 +1,7 @@
 import React from "react";
 
 import ItemDetails, { Record } from "../item-details";
-import { viewWithSwapiService } from "../hoc-helpers";
+import { withSwapiService } from "../hoc-helpers";
 
 const personMethodsToProps = swapiService => ({
   getData: swapiService.getPerson
@@ -66,9 +66,9 @@ const starshipDetails = props => {
   );
 };
 
-const PersonDetails = viewWithSwapiService(personMethodsToProps)(personDetails);
-const PlanetDetails = viewWithSwapiService(planetMethodsToProps)(planetDetails);
-const StarshipDetails = viewWithSwapiService(starshipMethodsToProps)(
+const PersonDetails = withSwapiService(personMethodsToProps)(personDetails);
+const PlanetDetails = withSwapiService(planetMethodsToProps)(planetDetails);
+const StarshipDetails = withSwapiService(starshipMethodsToProps)(
   starshipDetails
 );
 

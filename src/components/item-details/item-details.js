@@ -7,9 +7,8 @@ import "./style.css";
 class ItemDetails extends Component {
   static propTypes = {
     data: PropTypes.object,
-    itemId: PropTypes.number.isRequired,
-    getData: PropTypes.func.isRequired,
-    onGoBack: PropTypes.func.isRequired,
+    itemId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    getData: PropTypes.func,
     children: PropTypes.node
   };
 
@@ -40,7 +39,7 @@ class ItemDetails extends Component {
   };
 
   render() {
-    const { children, onGoBack } = this.props;
+    const { children } = this.props;
     const { data } = this.state;
 
     return data ? (
@@ -49,7 +48,6 @@ class ItemDetails extends Component {
         image={data.image}
         data={data}
         records={children}
-        onGoBack={onGoBack}
       />
     ) : (
       <Spinner />
@@ -63,7 +61,7 @@ const Record = ({ data, label, field }) => (
   </li>
 );
 
-const Details = ({ name, image, data, records, onGoBack }) => (
+const Details = ({ name, image, data, records }) => (
   <div className="item-details row no-gutters">
     <div className="card col-sm-5 bg-light">
       <img className="card-img" src={image} alt={name} />
@@ -78,7 +76,7 @@ const Details = ({ name, image, data, records, onGoBack }) => (
         )}
       </ul>
       <div className="card-body">
-        <a href="/" className="btn btn-primary card-link" onClick={onGoBack}>
+        <a href="/" className="btn btn-primary card-link">
           Go Back
         </a>
       </div>
@@ -90,8 +88,7 @@ Details.propTypes = {
   name: PropTypes.string,
   image: PropTypes.string,
   data: PropTypes.object,
-  records: PropTypes.node,
-  onGoBack: PropTypes.func
+  records: PropTypes.node
 };
 
 Record.propTypes = {
