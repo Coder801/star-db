@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Search from "../search";
 
 import logo from "./img/logo-header.png";
 
@@ -28,6 +29,9 @@ const Header = () => {
           </Link>
         </li>
       </nav>
+      <div className={style.search}>
+        <Search />
+      </div>
     </div>
   );
 };
