@@ -1,0 +1,42 @@
+.header {
+ display: flex;
+ align-items: center;
+ margin: 0 auto;
+ padding: 0 20px;
+ height: 60px;
+}
+
+.logo {
+ display: block;
+ max-width: 290px;
+}
+
+.image {
+ max-width: 100%;
+}
+
+.nav {
+ display: flex;
+ margin: 0 0 0 2rem;
+ list-style: none;
+
+ & .link {
+  display: inline-block;
+  margin: 0;
+  padding: 10px;
+  color: white;
+  text-decoration: none;
+  font-size: 1.4rem;
+  transition: opacity ease .3s;
+ }
+}
+
+
+
+.link:hover {
+ opacity: .7;
+}
+
+.search {
+ margin-left: auto;
+}
