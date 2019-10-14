@@ -1,43 +1,61 @@
-@import "../../index.scss";
+@import '../../styles/variables.scss';
 
 .header {
-  display: flex;
-  align-items: center;
-  margin: 0 auto;
-  padding: 0 20px;
-  height: 60px;
+ position: relative;
+ align-items: center;
+ margin: 0 auto;
+ height: 60px;
+
+ &:before,
+ &:after {
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  width: 40%;
+  height: 100%;
+  border-top: 1px solid $white;
+  border-bottom: 1px solid $white;
+  content: '';
+ }
+ &:before {
+  left: 0;
+  border-left: 1px solid $white;
+ }
+ &:after {
+  right: 0;
+  border-right: 1px solid $white;
+ }
+}
+
+.search,
+.nav {
+ position: absolute;
+ top: 0;
+ z-index: 3;
+ overflow: hidden;
+ height: 60px;
 }
 
 .logo {
-  display: block;
-  max-width: 290px;
-}
+ position: absolute;
+ top: 50%;
+ left: 50%;
+ z-index: 2;
+ display: block;
+ max-width: 200px;
+ transform: translate(-50%, -50%);
 
-.image {
+ & .image {
   max-width: 100%;
+ }
 }
 
 .nav {
-  display: flex;
-  margin: 0 0 0 2rem;
-  list-style: none;
-
-  & .link {
-    display: inline-block;
-    margin: 0;
-    padding: 10px;
-    color: white;
-    text-decoration: none;
-    font-size: 1.1rem;
-    transition: opacity ease 0.3s;
-
-    &.active,
-    &:hover {
-      color: $primary;
-    }
-  }
+ left: 0;
+ border-right: 1px solid $white;
 }
 
 .search {
-  margin-left: auto;
+ right: 0;
+ border-left: 1px solid $white;
 }
