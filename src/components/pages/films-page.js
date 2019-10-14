@@ -2,24 +2,24 @@ import React from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 
-import { StarshipsList } from "../sw-components";
+import { FilmsList } from "../sw-components";
 import { CATEGORIES } from "../../constants";
 
-const { starships } = CATEGORIES;
+const { films } = CATEGORIES;
 
-const StarshipPage = ({ history }) => {
+const FilmsPage = ({ history }) => {
   return (
-    <StarshipsList
+    <FilmsList
       onSelect={id => {
-        const newPath = `${starships.route}/${id}`;
+        const newPath = `${films.route}/${id}`;
         history.push(newPath);
       }}
     />
   );
 };
 
-StarshipPage.propTypes = {
+FilmsPage.propTypes = {
   history: PropTypes.object
 };
 
-export default withRouter(StarshipPage);
+export default withRouter(FilmsPage);

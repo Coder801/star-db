@@ -27,12 +27,13 @@ const withData = Wrapper => {
 
     render() {
       const { data, error } = this.state;
-      if (!data) {
-        return <Spinner />;
-      }
 
       if (error) {
         return <ErrorIndicator />;
+      }
+
+      if (!data) {
+        return <Spinner />;
       }
 
       return <Wrapper {...this.props} data={data} />;

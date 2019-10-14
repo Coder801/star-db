@@ -1,0 +1,40 @@
+.homepage {
+  $padding: 15px;
+
+  display: flex;
+  flex-wrap: wrap;
+  padding: $padding;
+
+  & .item {
+    width: 33.3%;
+    display: block;
+    padding: $padding;
+    margin: 0;
+    box-sizing: border-box;
+    position: relative;
+  }
+
+  & .image {
+    max-width: 100%;
+  }
+
+  & .caption {
+    background-color: white;
+    font-size: 1.4rem;
+    position: absolute;
+    left: 10px;
+    bottom: $padding * 2;
+    padding: 5px 20px;
+  }
+
+  & .link {
+    text-decoration: none;
+    color: black;
+  }
+}
+
+.page {
+  & .title {
+    color: white;
+  }
+}

@@ -1,22 +1,25 @@
 import React from "react";
 import PropTypes from "prop-types";
-
-import { PlanetList } from "../sw-components";
 import { withRouter } from "react-router-dom";
 
-const PlanetPage = ({ history }) => {
+import { PlanetsList } from "../sw-components";
+import { CATEGORIES } from "../../constants";
+
+const { planets } = CATEGORIES;
+
+const PlanetsPage = ({ history }) => {
   return (
-    <PlanetList
+    <PlanetsList
       onSelect={id => {
-        const newPath = `/planets/${id}`;
+        const newPath = `${planets.route}/${id}`;
         history.push(newPath);
       }}
     />
   );
 };
 
-PlanetPage.propTypes = {
+PlanetsPage.propTypes = {
   history: PropTypes.object
 };
 
-export default withRouter(PlanetPage);
+export default withRouter(PlanetsPage);

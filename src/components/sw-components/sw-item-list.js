@@ -4,12 +4,44 @@ import React from "react";
 import ItemList from "../item-list";
 import { withData, withFunc, withSwapiService } from "../hoc-helpers";
 
+// const methodToProps = ({
+//   getAllPeople,
+//   getAllFilms,
+//   getAllPlanets,
+//   getAllSpecies,
+//   getAllVehicles,
+//   getAllStarships
+// }) => {
+//   let result;
+//   return {
+//     persons: () => ({
+//       getData: getAllPeople
+//     }),
+
+//     films: () => ({
+//       getData: getAllPlanets
+//     })
+//   };
+// };
+
 const personsMethodToProps = swapiService => ({
   getData: swapiService.getAllPeople
 });
 
+const filmsMethodToProps = swapiService => ({
+  getData: swapiService.getAllFilms
+});
+
 const planetsMethodToProps = swapiService => ({
   getData: swapiService.getAllPlanets
+});
+
+const speciesMethodToProps = swapiService => ({
+  getData: swapiService.getAllSpecies
+});
+
+const vehiclesMethodToProps = swapiService => ({
+  getData: swapiService.getAllVehicles
 });
 
 const starshipsMethodToProps = swapiService => ({
@@ -29,16 +61,34 @@ const PersonList = compose(
   withFunc(ListItemFormat)
 )(ItemList);
 
-const PlanetList = compose(
+const FilmsList = compose(
+  withSwapiService(filmsMethodToProps),
+  withData,
+  withFunc(ListItemFormat)
+)(ItemList);
+
+const PlanetsList = compose(
   withSwapiService(planetsMethodToProps),
   withData,
   withFunc(ListItemFormat)
 )(ItemList);
 
-const StarshipList = compose(
+const SpeciesList = compose(
+  withSwapiService(speciesMethodToProps),
+  withData,
+  withFunc(ListItemFormat)
+)(ItemList);
+
+const VehiclesList = compose(
+  withSwapiService(vehiclesMethodToProps),
+  withData,
+  withFunc(ListItemFormat)
+)(ItemList);
+
+const StarshipsList = compose(
   withSwapiService(starshipsMethodToProps),
   withData,
   withFunc(ListItemFormat)
 )(ItemList);
 
-export { PersonList, PlanetList, StarshipList };
+export { PersonList, FilmsList, PlanetsList, SpeciesList, VehiclesList, StarshipsList };

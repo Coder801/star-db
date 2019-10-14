@@ -1,14 +1,20 @@
-import { PersonList, PlanetList, StarshipList } from "./sw-item-list";
 import {
-  PersonDetails,
-  PlanetDetails,
-  StarshipDetails
-} from "./sw-item-details";
+  PersonList,
+  FilmsList,
+  PlanetsList,
+  SpeciesList,
+  VehiclesList,
+  StarshipsList
+} from "./sw-item-list";
+import { PersonDetails, PlanetDetails, StarshipDetails } from "./sw-item-details";
 
 export {
   PersonList,
-  PlanetList,
-  StarshipList,
+  FilmsList,
+  PlanetsList,
+  SpeciesList,
+  VehiclesList,
+  StarshipsList,
   PersonDetails,
   PlanetDetails,
   StarshipDetails

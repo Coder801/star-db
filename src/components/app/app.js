@@ -5,16 +5,13 @@ import Header from "../header";
 import RandomPlanet from "../random-planet";
 import ErrorBoundry from "../error-boundry";
 import * as Pages from "../pages";
-import {
-  PersonDetails,
-  PlanetDetails,
-  StarshipDetails
-} from "../sw-components";
+import { PersonDetails, PlanetDetails, StarshipDetails } from "../sw-components";
 
 import SwapiService from "../../services/swapi";
 import { SwapiServiceProvider } from "../context";
 
-import style from "./style.module.css";
+import "normalize.css";
+import style from "./style.module.scss";
 
 export default class App extends Component {
   swapiService = new SwapiService();
@@ -32,35 +29,25 @@ export default class App extends Component {
                 <Switch>
                   <Route path="/" exact component={Pages.HomePage} />
                   <Route path="/people" exact component={Pages.PeoplePage} />
+                  <Route path="/films" exact component={Pages.FilmsPage} />
                   <Route path="/planets" exact component={Pages.PlanetsPage} />
-                  <Route
-                    path="/spaceships"
-                    exact
-                    component={Pages.StarshipsPage}
-                  />
+                  <Route path="/species" exact component={Pages.SpeciesPage} />
+                  <Route path="/vehicles" exact component={Pages.VehiclesPage} />
+                  <Route path="/starships" exact component={Pages.StarshipsPage} />
                   <Route
                     path="/people/:id"
-                    render={({ match }) => (
-                      <PersonDetails itemId={match.params.id} />
-                    )}
+                    render={({ match }) => <PersonDetails itemId={match.params.id} />}
                   />
                   <Route
                     path="/planets/:id"
-                    render={({ match }) => (
-                      <PlanetDetails itemId={match.params.id} />
-                    )}
+                    render={({ match }) => <PlanetDetails itemId={match.params.id} />}
                   />
                   <Route
                     path="/spaceships/:id"
-                    render={({ match }) => (
-                      <StarshipDetails itemId={match.params.id} />
-                    )}
+                    render={({ match }) => <StarshipDetails itemId={match.params.id} />}
                   />
                 </Switch>
               </main>
-              <aside className={style.aside}>
-                <RandomPlanet />
-              </aside>
             </div>
           </Router>
         </SwapiServiceProvider>

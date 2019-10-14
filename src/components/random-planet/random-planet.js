@@ -5,7 +5,7 @@ import Spinner from "../spinner";
 import ErrorIndicator from "../error-indicator";
 
 import SwapiService from "../../services/swapi";
-import random from "../../services/random";
+import { randomInteger } from "../../helpers";
 
 import style from "./style.module.css";
 
@@ -41,8 +41,7 @@ export default class RandomPlanet extends Component {
   };
 
   onImageError = event => {
-    event.target.src =
-      "https://starwars-visualguide.com/assets/img/placeholder.jpg";
+    event.target.src = "https://starwars-visualguide.com/assets/img/placeholder.jpg";
   };
 
   onPlanetLoaded = planet => {
@@ -51,7 +50,7 @@ export default class RandomPlanet extends Component {
 
   updatePlanet = async () => {
     const totalPlanets = await this.swapiService.getTotalPlanets();
-    const id = random(1, totalPlanets);
+    const id = randomInteger(1, totalPlanets);
     this.swapiService
       .getPlanet(id)
       .then(this.onPlanetLoaded)
@@ -92,12 +91,7 @@ const PlanetView = ({ planet, onImageError }) => {
   return (
     <div className={style.card}>
       <h2 className={style.title}>Random planet</h2>
-      <img
-        className={style.image}
-        alt={name}
-        onError={onImageError}
-        src={image}
-      />
+      <img className={style.image} alt={name} onError={onImageError} src={image} />
       <h3 className={style.name}>{name}</h3>
       <ul className={style.list}>
         <li>

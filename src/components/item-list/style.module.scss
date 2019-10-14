@@ -1,0 +1,41 @@
+@import "../../index.scss";
+
+.list {
+  padding: 10px 0 0 10px;
+  $textPadding: 15px;
+  $itemPadding: 20px;
+
+  & .item {
+    padding: 0;
+    display: inline-block;
+    margin-bottom: $itemPadding;
+    margin-right: $itemPadding;
+    max-width: calc(20% - #{$itemPadding});
+    border: 1px solid #282828;
+    box-sizing: border-box;
+    transition: background-color ease 0.2s;
+    position: relative;
+
+    &:hover {
+      cursor: pointer;
+      background-color: #2a9fd6;
+    }
+  }
+  & img {
+    max-width: 100%;
+    display: block;
+  }
+
+  & h4 {
+    margin: 0;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 0.8rem;
+    color: $primary;
+    text-align: center;
+    background-color: black;
+    bottom: $textPadding;
+    padding: 10px 20px;
+  }
+}
