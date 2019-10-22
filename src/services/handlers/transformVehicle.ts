@@ -1,41 +1,10 @@
 import { extractIdFromUrl, joinImagePathUrl } from "../../helpers";
 import { API_IMAGE_BASE, CATEGORIES } from "../../constants";
+import { IVehicleInput, IVehicleOutput } from "../interfaces/vehicle";
 
 const { vehicles } = CATEGORIES;
 
-interface IVehicleData {
-  url: string;
-  image: string;
-  name: string;
-  model: string;
-  manufacturer: string;
-  cost_in_credits: string;
-  length: string;
-  max_atmosphering_speed: string;
-  crew: string;
-  passengers: string;
-  cargo_capacity: string;
-  consumables: string;
-  vehicle_class: string;
-}
-
-interface IVehicle {
-  id: number;
-  image: string;
-  name: string;
-  model: string;
-  manufacturer: string;
-  costInCredits: string;
-  length: string;
-  maxAtmospheringSpeed: string;
-  crew: string;
-  passengers: string;
-  cargoCapacity: string;
-  consumables: string;
-  vehicleClass: string;
-}
-
-const transformVehicle = (data: IVehicleData): IVehicle => {
+const transformVehicle = (data: IVehicleInput): IVehicleOutput => {
   const id = extractIdFromUrl(data.url);
   const image = joinImagePathUrl.jpg(API_IMAGE_BASE, vehicles.imageUrl, id.toString());
 

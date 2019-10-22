@@ -1,38 +1,10 @@
 import { extractIdFromUrl, joinImagePathUrl } from "../../helpers";
 import { API_IMAGE_BASE, CATEGORIES } from "../../constants";
+import { ISpecieInput, ISpecieOutput } from "../interfaces/specie";
 
 const { species } = CATEGORIES;
 
-interface ISpecieData {
-  url: string;
-  name: string;
-  classification: string;
-  designation: string;
-  average_height: string;
-  skin_colors: string;
-  hair_colors: string;
-  eye_colors: string;
-  average_lifespan: string;
-  homeworld: string;
-  language: string;
-}
-
-interface ISpecie {
-  id: number;
-  image: string;
-  name: string;
-  classification: string;
-  designation: string;
-  averageHeight: string;
-  skinColors: string;
-  hairColors: string;
-  eyeColors: string;
-  averageLifespan: string;
-  homeworld: string;
-  language: string;
-}
-
-const transformSpecie = (data: ISpecieData): ISpecie => {
+const transformSpecie = (data: ISpecieInput): ISpecieOutput => {
   const id = extractIdFromUrl(data.url);
   const image = joinImagePathUrl.jpg(API_IMAGE_BASE, species.imageUrl, id.toString());
 

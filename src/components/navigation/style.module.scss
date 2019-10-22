@@ -3,24 +3,92 @@
 .navigation {
  & {
   display: flex;
-  margin: 0 0 0 2rem;
+  margin: 0;
   list-style: none;
  }
- & .item {
- }
 
- & .link {
-  display: inline-block;
-  margin: 0;
-  padding: 10px;
-  color: white;
-  text-decoration: none;
-  font-size: 1.1rem;
-  transition: opacity ease .3s;
+ .icon {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  border-right: 1px solid $white;
+  text-indent: -9999px;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color .3s ease;
+
+  & .line {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   width: 26px;
+   height: 2px;
+   background-color: $white;
+   transform: translate(-50%, -50%);
+
+   &::before,
+   &::after {
+    position: relative;
+    display: block;
+    width: inherit;
+    height: inherit;
+    background-color: inherit;
+    content: '';
+   }
+
+   &::before {
+    top: -8px;
+   }
+
+   &:after {
+    bottom: -6px;
+   }
+  }
 
   &.active,
   &:hover {
-   color: $primary;
+   background-color: rgba(255, 255, 255, .2);
+  }
+ }
+
+ & .list {
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  justify-content: stretch;
+  margin: 0;
+  padding: 0;
+  width: 0;
+  height: 60px;
+  list-style: none;
+  opacity: 0;
+  transition: opacity .8s ease, width .8s ease .3s;
+
+  &.show {
+   width: 620px;
+   opacity: 1;
+   transition: width .8s ease, opacity .8s ease .4s;
+  }
+
+  & .item {
+   display: flex;
+   flex-grow: 1;
+   border-right: 1px solid $white;
+
+   & .link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    color: $white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: background-color .3s ease;
+
+    &:hover {
+     background-color: rgba(255, 255, 255, .2);
+    }
+   }
   }
  }
 }

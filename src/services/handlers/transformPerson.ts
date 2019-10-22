@@ -1,35 +1,10 @@
 import { extractIdFromUrl, joinImagePathUrl } from "../../helpers";
 import { API_IMAGE_BASE, CATEGORIES } from "../../constants";
+import { IPersonInput, IPersonOutput } from "../interfaces/person";
 
 const { people } = CATEGORIES;
 
-interface IPersonData {
-  url: string;
-  image: string;
-  name: string;
-  height: string;
-  mass: string;
-  hair_color: string;
-  skin_color: string;
-  eye_color: string;
-  birth_year: string;
-  gender: string;
-}
-
-interface IPerson {
-  id: number;
-  image: string;
-  name: string;
-  height: string;
-  mass: string;
-  hairColor: string;
-  skinColor: string;
-  eyeColor: string;
-  birthYear: string;
-  gender: string;
-}
-
-const transformPerson = (data: IPersonData): IPerson => {
+const transformPerson = (data: IPersonInput): IPersonOutput => {
   const id = extractIdFromUrl(data.url);
   const image = joinImagePathUrl.jpg(API_IMAGE_BASE, people.imageUrl, id.toString());
 

@@ -1,36 +1,10 @@
 import { extractIdFromUrl, joinImagePathUrl } from "../../helpers";
 import { API_IMAGE_BASE, CATEGORIES } from "../../constants";
+import { IPlanetInput, IPanetOutput } from "../interfaces/planet";
 
 const { planets } = CATEGORIES;
 
-interface IPlanetData {
-  url: string;
-  name: string;
-  rotation_period: string;
-  orbital_period: string;
-  diameter: string;
-  climate: string;
-  gravity: string;
-  terrain: string;
-  surface_water: string;
-  population: string;
-}
-
-interface IPanet {
-  id: number;
-  image: string;
-  name: string;
-  rotationPeriod: string;
-  orbitalPeriod: string;
-  diameter: string;
-  climate: string;
-  gravity: string;
-  terrain: string;
-  surfaceWater: string;
-  population: string;
-}
-
-const transformPlanet = (data: IPlanetData): IPanet => {
+const transformPlanet = (data: IPlanetInput): IPanetOutput => {
   const id = extractIdFromUrl(data.url);
   const image = joinImagePathUrl.jpg(API_IMAGE_BASE, planets.imageUrl, id.toString());
 

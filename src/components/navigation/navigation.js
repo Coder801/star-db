@@ -1,19 +1,46 @@
-import React from "react";
+import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 
 import style from "./style.module.scss";
 
-const Header = ({ categories }) => {
-  const navLinks = list =>
-    Object.values(list).map(({ route, label }, key) => (
-      <li className={style.item} key={key}>
-        <NavLink activeClassName={style.active} className={style.link} to={route}>
-          {label}
-        </NavLink>
-      </li>
-    ));
+const NavItem = ({ route, label }) => (
+  <li className={style.item}>
+    <NavLink activeClassName={style.active} className={style.link} to={route}>
+      {label}
+    </NavLink>
+  </li>
+);
 
-  return <ul className={style.navigation}>{navLinks(categories)}</ul>;
-};
+export default class Navigation extends Component {
+  state = {
+    open: false
+  };
 
-export default Header;
+  toggleMenu = () => {
+    this.setState({
+      open: !this.state.open
+    });
+
+    console.log(this.state.open);
+  };
+
+  render() {
+    const { categories } = this.props;
+    const activeNavigation = this.state.open ? style.open : "";
+    const activeButton = this.state.open ? style.active : "";
+    const activeNav = this.state.open ? style.show : "";
+
+    return (
+      <div className={`${style.navigation} ${activeNavigation}`}>
+        <div className={`${style.icon} ${activeButton}`} onClick={this.toggleMenu}>
+          <div className={style.line}></div>
+        </div>
+        <ul className={`${style.list} ${activeNav}`}>
+          {Object.values(categories).map(({ route, label }, key) => (
+            <NavItem route={route} label={label} key={key} />
+          ))}
+        </ul>
+      </div>
+    );
+  }
+}
