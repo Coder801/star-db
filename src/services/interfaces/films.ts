@@ -1,6 +1,6 @@
 import { IDataInput, IDataOutput } from "./data";
 
-interface IFilmInput extends IDataInput {
+export interface IFilmInput extends IDataInput {
   url: string;
   title: string;
   episode_id: string;
@@ -10,7 +10,7 @@ interface IFilmInput extends IDataInput {
   release_date: string;
 }
 
-interface IFilmOutput extends IDataOutput {
+export interface IFilmOutput extends IDataOutput {
   id: number;
   image: string;
   name: string;
@@ -20,5 +20,3 @@ interface IFilmOutput extends IDataOutput {
   producer: string;
   releaseDate: string;
 }
-
-export { IFilmInput, IFilmOutput };

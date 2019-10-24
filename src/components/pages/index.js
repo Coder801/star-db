@@ -1,4 +1,4 @@
-import HomePage from "./home-page";
+import HomePage from "./homepage";
 import PeoplePage from "./people-page";
 import FilmsPage from "./films-page";
 import PlanetsPage from "./planets-page";

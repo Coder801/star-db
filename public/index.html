@@ -13,13 +13,31 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
 
     <style>
-      body {
-       margin: 0;
-       padding: 0;
-       padding-top: 1rem;
-       padding-bottom: 50px;
-       background-color: #2a3d4c;
-      }
+
+body {
+ box-sizing: border-box;
+ margin: 0;
+ padding: 0;
+ padding-top: 1rem;
+ padding-bottom: 50px;
+ min-height: 100vh;
+ background: #042b46;
+}
+
+body::before {
+ position: absolute;
+ top: 0;
+ left: 0;
+ z-index: -1;
+ width: 100%;
+ height: 100%;
+ background-image: radial-gradient(circle at bottom, transparent 40%, #042b46 100%), url('./img/bg5.jpg');
+ background-attachment: fixed;
+ background-size: cover;
+ background-repeat: no-repeat;
+ content: '';
+ /* filter: blur(5px); */
+}
 
     </style>
   </head>

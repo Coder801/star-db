@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Search from "../search";
 import Navigation from "../navigation";
 
-import logo from "./img/logo-header_2.png";
+import logo from "./img/logo-header.png";
 
 import style from "./style.module.scss";
 import { CATEGORIES as categories } from "../../constants";

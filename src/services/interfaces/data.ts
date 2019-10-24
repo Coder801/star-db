@@ -1,11 +1,9 @@
-interface IDataInput {
+export interface IDataInput {
   url: string;
 }
 
-interface IDataOutput {
+export interface IDataOutput {
   id: number;
   image: string;
   name: string;
 }
-
-export { IDataInput, IDataOutput };

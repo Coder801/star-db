@@ -1,6 +1,6 @@
 import { IDataInput, IDataOutput } from "./data";
 
-interface IVehicleInput extends IDataInput {
+export interface IVehicleInput extends IDataInput {
   url: string;
   image: string;
   name: string;
@@ -16,7 +16,7 @@ interface IVehicleInput extends IDataInput {
   vehicle_class: string;
 }
 
-interface IVehicleOutput extends IDataOutput {
+export interface IVehicleOutput extends IDataOutput {
   id: number;
   image: string;
   name: string;
@@ -31,5 +31,3 @@ interface IVehicleOutput extends IDataOutput {
   consumables: string;
   vehicleClass: string;
 }
-
-export { IVehicleInput, IVehicleOutput };

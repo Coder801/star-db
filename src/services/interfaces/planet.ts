@@ -1,6 +1,6 @@
 import { IDataInput, IDataOutput } from "./data";
 
-interface IPlanetInput extends IDataInput {
+export interface IPlanetInput extends IDataInput {
   name: string;
   rotation_period: string;
   orbital_period: string;
@@ -12,7 +12,7 @@ interface IPlanetInput extends IDataInput {
   population: string;
 }
 
-interface IPanetOutput extends IDataOutput {
+export interface IPanetOutput extends IDataOutput {
   rotationPeriod: string;
   orbitalPeriod: string;
   diameter: string;
@@ -22,5 +22,3 @@ interface IPanetOutput extends IDataOutput {
   surfaceWater: string;
   population: string;
 }
-
-export { IPlanetInput, IPanetOutput };

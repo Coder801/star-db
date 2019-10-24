@@ -1,6 +1,6 @@
 import { IDataInput, IDataOutput } from "./data";
 
-interface ISpecieInput extends IDataInput {
+export interface ISpecieInput extends IDataInput {
   name: string;
   classification: string;
   designation: string;
@@ -13,7 +13,7 @@ interface ISpecieInput extends IDataInput {
   language: string;
 }
 
-interface ISpecieOutput extends IDataOutput {
+export interface ISpecieOutput extends IDataOutput {
   classification: string;
   designation: string;
   averageHeight: string;
@@ -24,5 +24,3 @@ interface ISpecieOutput extends IDataOutput {
   homeworld: string;
   language: string;
 }
-
-export { ISpecieInput, ISpecieOutput };

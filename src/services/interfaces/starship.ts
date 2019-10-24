@@ -1,6 +1,6 @@
 import { IDataInput, IDataOutput } from "./data";
 
-interface IStarshipInput extends IDataInput {
+export interface IStarshipInput extends IDataInput {
   name: string;
   model: string;
   manufacturer: string;
@@ -16,7 +16,7 @@ interface IStarshipInput extends IDataInput {
   starship_class: string;
 }
 
-interface IStarshipOutput extends IDataOutput {
+export interface IStarshipOutput extends IDataOutput {
   model: string;
   manufacturer: string;
   costInCredits: string;
@@ -30,5 +30,3 @@ interface IStarshipOutput extends IDataOutput {
   mglt: string;
   starshipClass: string;
 }
-
-export { IStarshipInput, IStarshipOutput };

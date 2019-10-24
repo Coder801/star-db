@@ -1,6 +1,6 @@
 import { IDataInput, IDataOutput } from "./data";
 
-interface IPersonInput extends IDataInput {
+export interface IPersonInput extends IDataInput {
   url: string;
   image: string;
   name: string;
@@ -13,7 +13,7 @@ interface IPersonInput extends IDataInput {
   gender: string;
 }
 
-interface IPersonOutput extends IDataOutput {
+export interface IPersonOutput extends IDataOutput {
   height: string;
   mass: string;
   hairColor: string;
@@ -22,5 +22,3 @@ interface IPersonOutput extends IDataOutput {
   birthYear: string;
   gender: string;
 }
-
-export { IPersonInput, IPersonOutput };
