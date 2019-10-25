@@ -4,34 +4,22 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,900&display=swap');
 
 body * {
- // font-family: 'Poller One', cursive;
  // font-family: 'Open Sans';
- // font-family: 'Dosis', sans-serif;
- font-family: 'Roboto Condensed', sans-serif;
- //font-family: 'Roboto', sans-serif;
+ font-family: 'Dosis', sans-serif;
+ // font-family: 'Roboto Condensed', sans-serif;
+ // font-family: 'Roboto', sans-serif;
 }
 
 .page {
- display: grid;
- margin-bottom: 2rem;
- padding: 3rem;
-
- grid-template-areas: 'header header header'
- '. main .';
- grid-template-rows: 130px 1fr;
- grid-template-columns: 1fr 1200px 1fr;
- grid-column-gap: 1rem;
- grid-row-gap: 1rem;
 }
 
 .header {
- grid-area: header;
+ padding: 3rem;
 }
 
 .main {
- grid-area: main;
+ padding: 0 3rem;
 }
 
 .aside {
- grid-area: aside;
 }

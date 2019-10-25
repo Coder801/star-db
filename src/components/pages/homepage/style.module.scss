@@ -6,7 +6,6 @@
  & .container {
   position: relative;
   display: flex;
-  width: 200%;
 
   &.showCategories {
    & .jumbotron {
@@ -21,6 +20,7 @@
 
  & .jumbotron {
   position: relative;
+  display: none;
   margin-right: 6%;
   width: 88%;
   transition: opacity .8s;
@@ -96,6 +96,7 @@
   position: absolute;
   top: 0;
   left: -61px;
+  display: none;
   margin: 0;
   text-transform: uppercase;
   white-space: nowrap;

@@ -12,37 +12,19 @@
 .item {
  position: relative;
  box-sizing: border-box;
- margin-bottom: 20px;
- width: 32%;
+ width: calc(100% / 3);
+
+ &:hover {
+  & .image {
+   opacity: 1;
+  }
+ }
 }
 
 .figure {
  margin: 0;
  padding: 0;
-
- &:before {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  border: 1px solid $white;
-  content: '';
-  transition: transform .6s, opacity .6s;
-  transform: scale(.95, .91);
- }
-
- &:hover {
-  &:before {
-   opacity: 0;
-   transform: scale(1);
-  }
-
-  & .caption {
-   opacity: 1;
-   transform: translateY(0px);
-  }
- }
+ background-color: black;
 }
 
 .image {
@@ -50,19 +32,20 @@
  min-height: 200px;
  max-width: 100%;
  width: 100%;
+ opacity: .6;
+ transition: opacity .3s ease;
 }
 
 .caption {
  position: absolute;
- bottom: 20px;
- left: 20px;
- padding: 5px 15px;
+ top: 50%;
+ left: 50%;
+ padding: .75rem 1.5rem;
  border: 1px solid $white;
- background-color: rgba(0, 0, 0, .4);
+ background-color: rgba(0, 0, 0, .5);
  color: $white;
  text-decoration: none;
- font-size: 1.5rem;
- opacity: 0;
- transition: transform .6s, opacity .6s;
- transform: translateY(20px);
+ font-weight: 100;
+ font-size: 1.7rem;
+ transform: translate(-50%, -50%);
 }
