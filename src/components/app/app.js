@@ -28,6 +28,11 @@ export default class App extends Component {
               <main className={style.main}>
                 <Switch>
                   <Route path="/" exact component={Pages.HomePage} />
+                  <Route
+                    path="/categories"
+                    exact
+                    component={() => <Pages.HomePage openCategories={true} />}
+                  />
                   <Route path="/people" exact component={Pages.PeoplePage} />
                   <Route path="/films" exact component={Pages.FilmsPage} />
                   <Route path="/planets" exact component={Pages.PlanetsPage} />

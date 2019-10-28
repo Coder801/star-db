@@ -1,68 +1,65 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory, withRouter } from "react-router-dom";
 
 import Categories from "../../categories";
+import Jumbotron from "../../jumbotron";
 
 import style from "./style.module.scss";
 
-const Jumbotron = () => {
+const Left = () => {
   return (
-    <div className={style.jumbotron}>
-      <h1 className={style.title}>
-        About <span className={style.highlight}>the</span> dark <br />
-        side
-      </h1>
-      <div className={style.content}>
-        <p className={style.text}>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti neque consequatur
-          blanditiis sit expedita reprehenderit minus tempora voluptas quasi delectus. Et sed iste
-          consequuntur rerum expedita iure ex dolore dicta?
-        </p>
-        <p className={style.text}>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti neque consequatur
-          blanditiis sit expedita reprehenderit minus tempora voluptas quasi delectus. Et sed iste
-          consequuntur rerum expedita iure ex dolore dicta?
-        </p>
-      </div>
+    <div className={style.left}>
+      <Jumbotron />
     </div>
   );
 };
 
-const ViewCategories = ({ onClick }) => {
+const Right = () => {
   return (
-    <div className={style.categories}>
-      <h2 className={style.subtitle}>
-        <a className={style.link} onClick={onClick} href={"/"}>
-          See all categories
-        </a>
-      </h2>
+    <div className={style.right}>
       <Categories />
     </div>
   );
 };
 
-export default class HomePage extends Component {
-  state = {
-    openCategories: false
+const Toggle = ({ isCategoriesOpen }) => {
+  const history = useHistory();
+  const state = isCategoriesOpen ? "open" : "close";
+  const states = {
+    close: {
+      link: "/categories",
+      text: "Show all categories",
+      arrow: ""
+    },
+    open: {
+      link: "/",
+      text: "Hide all categories",
+      arrow: style.arrowActive
+    }
   };
 
-  onClick = event => {
-    event.preventDefault();
-    this.setState({
-      openCategories: !this.state.openCategories
-    });
-  };
+  const { link, text, arrow } = states[state];
 
-  render() {
-    const show = this.state.openCategories ? style.showCategories : "";
+  return (
+    <a className={style.toggle} onClick={() => history.push(link)}>
+      <span className={style.text}>{text}</span>
+      <span className={`${style.arrow} ${arrow}`}></span>
+    </a>
+  );
+};
 
-    return (
-      <div className={style.homepage}>
-        <div className={`${style.container} ${show}`}>
-          <Jumbotron />
-          <ViewCategories onClick={this.onClick} />
-        </div>
+const HomePage = props => {
+  let { openCategories, match } = props;
+  const isCategories = match.path === "/categories";
+
+  return (
+    <div className={style.homepage}>
+      <div className={style.container}>
+        {isCategories ? <Right /> : <Left />}
+        <Toggle isCategoriesOpen={openCategories} />
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
+
+export default withRouter(HomePage);

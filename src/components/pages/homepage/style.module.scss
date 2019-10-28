@@ -5,122 +5,78 @@
 
  & .container {
   position: relative;
-  display: flex;
-
-  &.showCategories {
-   & .jumbotron {
-    opacity: 0;
-   }
-
-   & .categories {
-    transform: translateX(-100%);
-   }
-  }
+  box-sizing: border-box;
+  width: 100%;
  }
 
- & .jumbotron {
+ & .left,
+ & .right {
   position: relative;
-  display: none;
-  margin-right: 6%;
-  width: 88%;
+  margin-bottom: 50px;
+  margin-left: 60px;
+  width: 990px;
   transition: opacity .8s;
  }
 
- & .categories {
+ & .right {
   position: relative;
+  top: 15px;
+  z-index: 2;
+  margin: 0 auto;
   width: 100%;
-  transition: transform .8s;
  }
 
- & .item {
-  position: relative;
-  display: block;
-  box-sizing: border-box;
-  margin: 0;
-  padding: $padding;
-  width: 33.3%;
- }
 
- & .image {
-  max-width: 100%;
- }
-
- & .caption {
+ // ----------------------------------- //
+ & .toggle {
   position: absolute;
-  bottom: $padding * 2;
-  left: 10px;
-  padding: 5px 20px;
-  background-color: white;
-  font-size: 1.4rem;
- }
-
- & .link {
-  color: black;
+  top: -60px;
+  left: calc(100% - 61px);
+  display: flex;
   text-decoration: none;
- }
-
- & .title {
-  & {
-   margin: 0;
-   color: #fff;
-   text-align: right;
-   text-transform: uppercase;
-   letter-spacing: -.2rem;
-   font-weight: 900;
-   font-size: 9rem;
-   line-height: 8rem;
-  }
-  & .highlight {
-   color: transparent;
-
-   -webkit-text-fill-color: transparent;
-   -webkit-text-stroke: .2rem white;
-  }
- }
-
- & .content {
-  position: absolute;
-  top: 180px;
-  left: 10px;
- }
-
- & .text {
-  width: 60%;
-  color: white;
-  font-size: 1.2rem;
-  font-family: 'Open sans';
-  line-height: 2rem;
- }
-
- & .subtitle {
-  position: absolute;
-  top: 0;
-  left: -61px;
-  display: none;
-  margin: 0;
-  text-transform: uppercase;
   white-space: nowrap;
-  font-weight: normal;
-  font-size: 2.5rem;
+  cursor: pointer;
   transform: rotate(-90deg) translateX(-100%);
   transform-origin: 0 0 0;
 
-  &:before {
-   position: absolute;
-   top: 50%;
-   left: -40px;
-   margin-top: -15px;
-   width: 0;
-   height: 0;
-   border-top: 12px solid transparent;
-   border-right: 15px solid $white;
-   border-bottom: 12px solid transparent;
-   content: '';
-   transform: rotate(90deg);
+  & .text {
+   color: $white;
+   text-transform: uppercase;
+   font-weight: normal;
+   font-size: 3.1rem;
+   font-family: 'Roboto Condensed', sans-serif;
+   line-height: 62px;
   }
- }
 
- & .link {
-  color: $white;
+  & .arrow {
+   position: relative;
+   display: inline-block;
+   box-sizing: border-box;
+   margin-left: 15px;
+   width: 60px;
+   height: 60px;
+   border: 1px solid transparent;
+   transition: all .3s ease;
+
+   &:before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 25px;
+    height: 25px;
+    background-image: url('./img/play-button.svg');
+    background-repeat: no-repeat;
+    content: '';
+    transition: transform .3s ease;
+    transform: translate(-50%, -50%) rotate(-90deg);
+   }
+
+   &.arrowActive {
+    border: 1px solid $white;
+    &:before {
+     transform: translate(-50%, -50%) rotate(90deg);
+    }
+   }
+  }
  }
 }
