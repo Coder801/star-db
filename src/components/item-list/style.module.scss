@@ -7,6 +7,12 @@
  $textPadding: 15px;
  $itemPadding: 20px;
 
+ &.characters {
+  & .item {
+   width: 15%;
+  }
+ }
+
  & .item {
   position: relative;
   display: inline-block;
@@ -15,7 +21,7 @@
   margin-right: $itemPadding;
   margin-bottom: $itemPadding;
   padding: .5rem;
-  max-width: calc(20% - #{$itemPadding});
+  //width: calc(20% - #{$itemPadding});
   border: 1px solid $white;
   transition: background-color ease .2s;
 
@@ -27,6 +33,7 @@
    }
   }
  }
+
  & img {
   display: block;
   max-width: 100%;

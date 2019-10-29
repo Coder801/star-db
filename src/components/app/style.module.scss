@@ -3,35 +3,59 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,900&display=swap');
 
-body {
- & {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  padding-top: 1rem;
-  padding-bottom: 3rem;
-  min-height: 100vh;
-  background-color: #042b46;
+:global {
+ html {
+  font-size: 16px;
  }
 
- & p,
- & a,
- & li,
- & input,
- & textarea,
- & select {
-  font-family: 'Dosis', sans-serif;
- }
+ body {
+  & {
+   box-sizing: border-box;
+   margin: 0;
+   padding: 0;
+   padding-top: 1rem;
+   padding-bottom: 3rem;
+   min-height: 100vh;
+   background-color: #042b46;
+  }
 
- & h1,
- & h2,
- & h3,
- & h4,
- & h5,
- & h6 {
-  font-family: 'Roboto Condensed', sans-serif;
+  & p,
+  & a,
+  & li,
+  & input,
+  & textarea,
+  & select {
+   font-family: 'Dosis', sans-serif;
+  }
+
+  & h1,
+  & h2,
+  & h3,
+  & h4,
+  & h5,
+  & h6 {
+   font-family: 'Roboto Condensed', sans-serif;
+  }
+
+  h1 {
+   font-size: 9rem;
+  }
+
+  h2 {
+   font-size: 5rem;
+  }
+  h3 {
+   font-size: 4rem;
+  }
+
+  p {
+   font-size: 1.2rem;
+   line-height: 1.7rem;
+  }
  }
 }
+
+
 
 
 .page {
@@ -54,7 +78,7 @@ body {
  }
 
  &:after {
-  //background-image: linear-gradient(to right, transparent 10%, rgba(25, 21, 18, .9) 50%, rgba(25, 21, 18, .9));
+  //background-image: linear-gradient(to right, transparent 2%, #1a1615 7%, #1a1615);
   background-attachment: fixed;
   background-size: cover;
   background-repeat: no-repeat;

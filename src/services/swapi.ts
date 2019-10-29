@@ -47,7 +47,7 @@ class SwapiService {
   getVehicle = async (id: number) => await this.getById(`/vehicles/${id}/`, transformVehicle);
 
   getAllStarships = async () => await this.getAll("/starships", transformStarship);
-  getStarships = async (id: number) => await this.getById(`/starships/${id}/`, transformStarship);
+  getStarship = async (id: number) => await this.getById(`/starships/${id}/`, transformStarship);
 
   getTotalPlanets = async (id: number) => await this.getCount(`/planets/`);
 }

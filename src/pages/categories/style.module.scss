@@ -1,0 +1,23 @@
+@import '../../styles/variables.scss';
+
+
+
+.page {
+ & {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  max-width: 2000px;
+ }
+ & .title {
+  display: block;
+  margin: 0 0 1rem 0;
+  width: 100%;
+  color: $white;
+  text-align: right;
+  text-transform: uppercase;
+  font-size: 9rem;
+  line-height: 8rem;
+ }
+}

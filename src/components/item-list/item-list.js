@@ -2,8 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import style from "./style.module.scss";
+import Categories from "../categories";
 
-const ItemList = ({ ...props }) => {
+const ItemList = ({ category, ...props }) => {
   const renderList = ({ data, onSelect, children: labelOutput }) =>
     data.map(item => {
       const { id } = item;
@@ -15,7 +16,7 @@ const ItemList = ({ ...props }) => {
       );
     });
 
-  return <div className={style.list}>{renderList(props)}</div>;
+  return <div className={`${style.list} ${style[category]}`}>{renderList(props)}</div>;
 };
 
 export default ItemList;

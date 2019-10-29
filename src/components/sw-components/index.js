@@ -6,7 +6,15 @@ import {
   VehiclesList,
   StarshipsList
 } from "./sw-item-list";
-import { PersonDetails, PlanetDetails, StarshipDetails } from "./sw-item-details";
+
+import {
+  PersonDetails,
+  PlanetDetails,
+  StarshipDetails,
+  FilmDetails,
+  SpecieDetails,
+  VehicleDetails
+} from "./sw-item-details";
 
 export {
   PersonList,
@@ -17,5 +25,8 @@ export {
   StarshipsList,
   PersonDetails,
   PlanetDetails,
-  StarshipDetails
+  StarshipDetails,
+  FilmDetails,
+  SpecieDetails,
+  VehicleDetails
 };

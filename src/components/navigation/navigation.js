@@ -13,7 +13,7 @@ const NavItem = ({ route, label }) => (
 
 export default class Navigation extends Component {
   state = {
-    open: false
+    open: true
   };
 
   toggleMenu = () => {

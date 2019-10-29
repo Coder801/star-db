@@ -3,42 +3,14 @@
 $padding: 15px;
 
 .jumbotron {
- & .item {
+ & .container {
   position: relative;
-  display: block;
-  box-sizing: border-box;
-  margin: 0;
-  padding: $padding;
-  width: 33.3%;
  }
-
- & .image {
-  max-width: 100%;
- }
-
- & .caption {
-  position: absolute;
-  bottom: $padding * 2;
-  left: 10px;
-  padding: 5px 20px;
-  background-color: white;
-  font-size: 1.4rem;
- }
-
- & .link {
-  color: black;
-  text-decoration: none;
- }
-
  & .title {
   margin: 0;
   color: #fff;
   text-align: right;
   text-transform: uppercase;
-  letter-spacing: -.2rem;
-  font-weight: 900;
-  font-size: 9rem;
-  line-height: 8rem;
 
   & .highlight {
    color: transparent;
@@ -50,13 +22,14 @@ $padding: 15px;
  }
 
  & .content {
-  margin-top: -100px;
+  position: absolute;
+  top: 10rem;
+  width: 70%;
  }
 
  & .text {
-  width: 60%;
   color: white;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   line-height: 2rem;
  }
 }

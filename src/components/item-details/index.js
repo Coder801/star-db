@@ -1,4 +1,4 @@
-import ItemDetails, { Record } from "./item-details";
+import ItemDetails, { ListItem, ListItemDesc, ListItemPoint } from "./item-details";
 
 export default ItemDetails;
-export { Record };
+export { ListItem, ListItemDesc, ListItemPoint };

@@ -50,7 +50,19 @@ class ItemDetails extends Component {
   }
 }
 
-const Record = ({ data, label, field }) => (
+const ListItem = ({ data, label, field }) => (
+  <li className={style.item}>
+    <span className={style.label}>{label}:</span> <span className={style.field}>{data[field]}</span>
+  </li>
+);
+
+const ListItemDesc = ({ data, label, field }) => (
+  <li className={style.item}>
+    <span className={style.label}>{label}:</span> <span className={style.field}>{data[field]}</span>
+  </li>
+);
+
+const ListItemPoint = ({ data, label, field }) => (
   <li className={style.item}>
     <span className={style.label}>{label}:</span> <span className={style.field}>{data[field]}</span>
   </li>
@@ -77,11 +89,11 @@ Details.propTypes = {
   records: PropTypes.node
 };
 
-Record.propTypes = {
+ListItem.propTypes = {
   data: PropTypes.object,
   label: PropTypes.string,
   field: PropTypes.string
 };
 
 export default ItemDetails;
-export { Record };
+export { ListItem, ListItemDesc, ListItemPoint };

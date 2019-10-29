@@ -7,7 +7,7 @@ const { starships } = CATEGORIES;
 const transformStarship = (data: IStarshipInput): IStarshipOutput => {
   const id = extractIdFromUrl(data.url);
   const image = joinImagePathUrl.jpg(API_IMAGE_BASE, starships.imageUrl, id.toString());
-
+  
   return {
     id,
     image,

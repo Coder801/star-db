@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 
-import { PersonList } from "../../sw-components";
-import { CATEGORIES } from "../../../constants";
+import { PersonList } from "../../components/sw-components";
+import { CATEGORIES } from "../../constants";
 
 import style from "./style.module.scss";
 
@@ -14,6 +14,7 @@ const PeoplePage = ({ history }) => {
     <div className={style.page}>
       <h2 className={style.title}>{people.label}</h2>
       <PersonList
+        category={people.name}
         onSelect={id => {
           const newPath = `${people.route}/${id}`;
           history.push(newPath);

@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Link, useHistory, withRouter } from "react-router-dom";
 
-import Categories from "../../categories";
-import Jumbotron from "../../jumbotron";
+import Categories from "../../components/categories";
+import Jumbotron from "../../components/jumbotron";
 
 import style from "./style.module.scss";
 
