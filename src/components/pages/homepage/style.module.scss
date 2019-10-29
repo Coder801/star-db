@@ -12,8 +12,9 @@
  & .left,
  & .right {
   position: relative;
+  margin: 0 auto;
   margin-bottom: 50px;
-  margin-left: 60px;
+  padding-right: 200px;
   width: 990px;
   transition: opacity .8s;
  }

@@ -1,9 +1,9 @@
 import HomePage from "./homepage";
-import PeoplePage from "./people-page";
-import FilmsPage from "./films-page";
-import PlanetsPage from "./planets-page";
-import SpeciesPage from "./species-page";
-import VehiclesPage from "./vehicles-page";
-import StarshipsPage from "./starships-page";
+import PeoplePage from "./categories/people";
+import FilmsPage from "./categories/films";
+import PlanetsPage from "./categories/planets";
+import SpeciesPage from "./categories/species";
+import VehiclesPage from "./categories/vehicles";
+import StarshipsPage from "./categories/starships";
 
 export { HomePage, PeoplePage, FilmsPage, PlanetsPage, SpeciesPage, VehiclesPage, StarshipsPage };

@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 
-import { FilmsList } from "../sw-components";
-import { CATEGORIES } from "../../constants";
+import { FilmsList } from "../../sw-components";
+import { CATEGORIES } from "../../../constants";
 
 const { films } = CATEGORIES;
 

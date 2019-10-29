@@ -1,0 +1,62 @@
+@import '../../styles/variables.scss';
+
+.details {
+ display: flex;
+ align-items: flex-start;
+ justify-content: center;
+ margin: 0 auto;
+ width: 80%;
+}
+
+.figure {
+ margin: 0;
+ padding: .5rem;
+ width: 300px;
+ border: 1px solid $white;
+}
+
+.image {
+ max-width: 100%;
+}
+
+.description {
+ padding-left: 3rem;
+ width: 40%;
+}
+
+.title {
+ margin: -10px 0 20px 0;
+ color: $white;
+ font-size: 4rem;
+}
+
+.list {
+ display: flex;
+ flex-wrap: wrap;
+ margin: 0;
+ padding: 0;
+ list-style: none;
+
+ & .item {
+  position: relative;
+  display: block;
+  padding: .75rem 0;
+  width: 50%;
+  color: $white;
+ }
+
+ & .label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+ }
+
+ & .field {
+  display: inline-block;
+  padding: .15em 1rem;
+  border: 1px solid $white;
+  color: $white;
+  font-weight: 500;
+  font-size: 1.8rem;
+ }
+}

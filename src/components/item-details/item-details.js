@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Spinner from "../spinner";
 
-import style from "./style.module.css";
+import style from "./style.module.scss";
 
 class ItemDetails extends Component {
   static propTypes = {
@@ -43,12 +43,7 @@ class ItemDetails extends Component {
     const { data } = this.state;
 
     return data ? (
-      <Details
-        name={data.name}
-        image={data.image}
-        data={data}
-        records={children}
-      />
+      <Details name={data.name} image={data.image} data={data} records={children} />
     ) : (
       <Spinner />
     );
@@ -57,7 +52,7 @@ class ItemDetails extends Component {
 
 const Record = ({ data, label, field }) => (
   <li className={style.item}>
-    <span>{label}:</span> {data[field]}
+    <span className={style.label}>{label}:</span> <span className={style.field}>{data[field]}</span>
   </li>
 );
 
@@ -69,9 +64,7 @@ const Details = ({ name, image, data, records }) => (
     <div className={style.description}>
       <h3 className={style.title}>{name}</h3>
       <ul className={style.list}>
-        {React.Children.map(records, record =>
-          React.cloneElement(record, { data })
-        )}
+        {React.Children.map(records, record => React.cloneElement(record, { data }))}
       </ul>
     </div>
   </div>

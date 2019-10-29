@@ -5,7 +5,7 @@ import Header from "../header";
 import RandomPlanet from "../random-planet";
 import ErrorBoundry from "../error-boundry";
 import * as Pages from "../pages";
-import { PersonDetails, PlanetDetails, StarshipDetails } from "../sw-components";
+import { PersonDetails, PlanetDetails, StarshipDetails, FilmsDetails } from "../sw-components";
 
 import SwapiService from "../../services/swapi";
 import { SwapiServiceProvider } from "../context";
@@ -21,7 +21,7 @@ export default class App extends Component {
       <ErrorBoundry>
         <SwapiServiceProvider value={this.swapiService}>
           <Router>
-            <div className={style.page}>
+            <div className={`${style.page} ${style.list}`}>
               <header className={style.header}>
                 <Header />
               </header>
@@ -43,6 +43,10 @@ export default class App extends Component {
                     path="/people/:id"
                     render={({ match }) => <PersonDetails itemId={match.params.id} />}
                   />
+                  {/* <Route
+                    path="/films/:id"
+                    render={({ match }) => <FilmsDetails itemId={match.params.id} />}
+                  /> */}
                   <Route
                     path="/planets/:id"
                     render={({ match }) => <PlanetDetails itemId={match.params.id} />}
