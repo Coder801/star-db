@@ -44,8 +44,9 @@
   h2 {
    font-size: 5rem;
   }
+
   h3 {
-   font-size: 4rem;
+   font-size: 3rem;
   }
 
   p {
@@ -78,10 +79,11 @@
  }
 
  &:after {
-  //background-image: linear-gradient(to right, transparent 2%, #1a1615 7%, #1a1615);
+  //background-image: linear-gradient(to right, transparent 0%, #1a1615 0%, #1a1615);
   background-attachment: fixed;
   background-size: cover;
   background-repeat: no-repeat;
+  opacity: .6;
  }
 
  &.list {
@@ -108,7 +110,7 @@
 }
 
 .main {
- padding: 2rem 1rem 0;
+ padding: 0;
 }
 
 .aside {

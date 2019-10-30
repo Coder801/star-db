@@ -10,6 +10,7 @@ const { starships } = CATEGORIES;
 const StarshipPage = ({ history }) => {
   return (
     <StarshipsList
+      category={starships.name}
       onSelect={id => {
         const newPath = `${starships.route}/${id}`;
         history.push(newPath);

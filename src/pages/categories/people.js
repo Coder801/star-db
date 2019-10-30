@@ -12,14 +12,21 @@ const { people } = CATEGORIES;
 const PeoplePage = ({ history }) => {
   return (
     <div className={style.page}>
+      <ul className={style.breadcrump}>
+        <li className={style.breadcrumpItem}>Home</li>
+        <li className={style.breadcrumpItem}>Characters</li>
+      </ul>
       <h2 className={style.title}>{people.label}</h2>
-      <PersonList
-        category={people.name}
-        onSelect={id => {
-          const newPath = `${people.route}/${id}`;
-          history.push(newPath);
-        }}
-      />
+      <div className={style.list}>
+        <PersonList
+          category={people.name}
+          limit={12}
+          onSelect={id => {
+            const newPath = `${people.route}/${id}`;
+            history.push(newPath);
+          }}
+        />
+      </div>
     </div>
   );
 };

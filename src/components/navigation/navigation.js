@@ -31,13 +31,13 @@ export default class Navigation extends Component {
     const activeNav = this.state.open ? style.show : "";
 
     return (
-      <div className={`${style.navigation} ${activeNavigation}`}>
+      <div className={`${style.navigation}`}>
         <div className={`${style.icon} ${activeButton}`} onClick={this.toggleMenu}>
           <div className={style.line}></div>
         </div>
         <ul className={`${style.list} ${activeNav}`}>
           {Object.values(categories).map(({ route, label }, key) => (
-            <NavItem route={route} label={label} key={key} />
+            <NavItem route={route} label={label} key={key} activeClassName={activeNavigation} />
           ))}
         </ul>
       </div>

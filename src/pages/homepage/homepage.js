@@ -33,7 +33,7 @@ const Toggle = ({ isCategoriesOpen }) => {
     },
     open: {
       link: "/",
-      text: "Hide all categories",
+      text: "",
       arrow: style.arrowActive
     }
   };

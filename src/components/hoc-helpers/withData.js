@@ -11,8 +11,9 @@ const withData = Wrapper => {
     };
 
     componentDidMount() {
-      this.props
-        .getData() // eslint-disable-line react/prop-types
+      const { getData, limit = 10 } = this.props;
+
+      getData(limit)
         .then(data => {
           this.setState({
             data

@@ -10,6 +10,7 @@ const { planets } = CATEGORIES;
 const PlanetsPage = ({ history }) => {
   return (
     <PlanetsList
+      category={planets.name}
       onSelect={id => {
         const newPath = `${planets.route}/${id}`;
         history.push(newPath);

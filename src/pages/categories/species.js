@@ -10,6 +10,7 @@ const { species } = CATEGORIES;
 const SpeciesPage = ({ history }) => {
   return (
     <SpeciesList
+      category={species.name}
       onSelect={id => {
         const newPath = `${species.route}/${id}`;
         history.push(newPath);

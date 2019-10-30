@@ -10,6 +10,7 @@ const { vehicles } = CATEGORIES;
 const VehiclesPage = ({ history }) => {
   return (
     <VehiclesList
+      category={vehicles.name}
       onSelect={id => {
         const newPath = `${vehicles.route}/${id}`;
         history.push(newPath);

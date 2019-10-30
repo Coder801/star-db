@@ -1,40 +1,71 @@
 @import '../../styles/variables.scss';
 
 .list {
- margin-right: -20px;
- padding: 0;
+ box-sizing: border-box;
+ padding: 1rem 1rem 1rem;
 
  $textPadding: 15px;
  $itemPadding: 20px;
 
  &.characters {
+  margin-right: -1rem;
+
   & .item {
-   width: 15%;
+   margin-right: 2rem;
+   width: calc(100% / 6 - 2rem);
   }
  }
 
  & .item {
   position: relative;
   display: inline-block;
-  overflow: hidden;
   box-sizing: border-box;
-  margin-right: $itemPadding;
+  //margin-right: $itemPadding;
   margin-bottom: $itemPadding;
-  padding: .5rem;
   //width: calc(20% - #{$itemPadding});
-  border: 1px solid $white;
-  transition: background-color ease .2s;
+  transition: transform ease .2s;
+
+  &:before,
+  &:after {
+   position: absolute;
+   z-index: 0;
+   display: block;
+   width: 50%;
+   height: 50%;
+   border: 1px solid $white;
+   content: '';
+   transition: all .5s ease;
+  }
+  &:before {
+   bottom: 10px;
+   left: 10px;
+   border-top: 0;
+   border-right: 0;
+  }
+  &:after {
+   top: 10px;
+   right: 10px;
+   border-bottom: 0;
+   border-left: 0;
+  }
 
   &:hover {
    cursor: pointer;
-
-   & img {
-    transform: scale(1.1);
+   transform: scale(.95);
+   &::before {
+    bottom: -10px;
+    left: -10px;
+   }
+   &::after {
+    top: -10px;
+    right: -10px;
    }
   }
  }
 
  & img {
+  position: relative;
+  z-index: 1;
   display: block;
   max-width: 100%;
   transition: transform .3s ease;
@@ -42,14 +73,14 @@
 
  & h4 {
   position: absolute;
-  bottom: 10px;
-  left: 0;
-  overflow: hidden;
+  bottom: 0;
+  left: 0rem;
+  z-index: 2;
   box-sizing: border-box;
   margin: 0;
-  padding: 10px;
+  padding: 100px 10px 10px;
   width: 100%;
-  background: rgba(0,0,0,.7);
+  background-image: linear-gradient(to bottom, transparent 0, rgba(26, 22, 21, .5) 50%, rgba(26, 22, 21, .9));
   color: $white;
   text-align: center;
   text-overflow: ellipsis;

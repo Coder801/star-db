@@ -10,6 +10,8 @@ const { films } = CATEGORIES;
 const FilmsPage = ({ history }) => {
   return (
     <FilmsList
+      category={films.name}
+      limit={2}
       onSelect={id => {
         const newPath = `${films.route}/${id}`;
         history.push(newPath);
