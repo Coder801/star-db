@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 
+import Breadcrump from "../../components/breadcrump";
 import { PersonList } from "../../components/sw-components";
 import { CATEGORIES } from "../../constants";
 
@@ -12,10 +13,9 @@ const { people } = CATEGORIES;
 const PeoplePage = ({ history }) => {
   return (
     <div className={style.page}>
-      <ul className={style.breadcrump}>
-        <li className={style.breadcrumpItem}>Home</li>
-        <li className={style.breadcrumpItem}>Characters</li>
-      </ul>
+      <nav className={style.breadcrump}>
+        <Breadcrump />
+      </nav>
       <h2 className={style.title}>{people.label}</h2>
       <div className={style.list}>
         <PersonList

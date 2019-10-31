@@ -9,7 +9,6 @@
   flex-wrap: wrap;
   margin: 0 auto;
   max-width: 2000px;
-  //background-image: linear-gradient(to bottom, transparent 0, #1a1615 14rem, rgba(26, 22, 21, .7));
  }
  & .title {
   position: relative;
@@ -19,35 +18,6 @@
   width: 100%;
   color: $white;
   text-transform: uppercase;
- }
-
- & .breadcrump {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  margin: 0 0 1rem 1.5rem;
-  padding: 0;
-  list-style: none;
- }
-
- & .breadcrumpItem {
-  margin-right: 10px;
-  color: $white;
-  font-size: 1.5rem;
-  opacity: .5;
-
-  &:last-child {
-   opacity: 1;
-   &::after {
-    display: none;
-   }
-  }
-
-  &::after {
-   display: inline-block;
-   margin-left: 10px;
-   content: '/';
-  }
  }
 
  & .list {

@@ -1,0 +1,31 @@
+
+@import '../../styles/variables.scss';
+
+.breadcrump {
+ position: relative;
+ z-index: 2;
+ display: flex;
+ margin: 0 0 1rem 1.5rem;
+ padding: 0;
+ list-style: none;
+
+ & .breadcrumpItem {
+  margin-right: 10px;
+  color: $white;
+  font-size: 1.5rem;
+  opacity: .5;
+
+  &:last-child {
+   opacity: 1;
+   &::after {
+    display: none;
+   }
+  }
+
+  &::after {
+   display: inline-block;
+   margin-left: 10px;
+   content: '/';
+  }
+ }
+}
