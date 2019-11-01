@@ -1,0 +1,25 @@
+@import '../../styles/variables.scss';
+
+.page {
+ & {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  max-width: 2000px;
+ }
+ & .title {
+  position: relative;
+  z-index: 2;
+  display: block;
+  margin: 0 0 1rem 1rem;
+  width: 100%;
+  color: $white;
+  text-transform: uppercase;
+ }
+
+ & .list {
+  position: relative;
+  width: 100%;
+ }
+}

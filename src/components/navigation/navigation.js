@@ -20,8 +20,6 @@ export default class Navigation extends Component {
     this.setState({
       open: !this.state.open
     });
-
-    console.log(this.state.open);
   };
 
   render() {

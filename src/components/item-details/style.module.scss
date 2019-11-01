@@ -6,29 +6,31 @@
  justify-content: center;
  margin: 0 auto;
  width: 80%;
+
+ & .figure {
+  margin: 0;
+  padding: .5rem;
+  width: 300px;
+  border: 1px solid $white;
+ }
+
+ & .image {
+  max-width: 100%;
+ }
+
+ & .description {
+  padding-left: 3rem;
+  width: 40%;
+ }
+
+ & .title {
+  margin: -10px 0 20px 0;
+  color: $white;
+  font-size: 4rem;
+ }
 }
 
-.figure {
- margin: 0;
- padding: .5rem;
- width: 300px;
- border: 1px solid $white;
-}
 
-.image {
- max-width: 100%;
-}
-
-.description {
- padding-left: 3rem;
- width: 40%;
-}
-
-.title {
- margin: -10px 0 20px 0;
- color: $white;
- font-size: 4rem;
-}
 
 .list {
  display: flex;

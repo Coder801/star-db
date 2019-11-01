@@ -2,17 +2,8 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import Header from "../header";
-import RandomPlanet from "../random-planet";
 import ErrorBoundry from "../error-boundry";
-import * as Pages from "../../pages";
-import {
-  PersonDetails,
-  PlanetDetails,
-  StarshipDetails,
-  FilmDetails,
-  SpecieDetails,
-  VehicleDetails
-} from "../sw-components";
+import { HomePage, List, Details } from "../../pages";
 
 import SwapiService from "../../services/swapi";
 import { SwapiServiceProvider } from "../context";
@@ -34,41 +25,64 @@ export default class App extends Component {
               </header>
               <main className={style.main}>
                 <Switch>
-                  <Route path="/" exact component={Pages.HomePage} />
+                  <Route path="/" exact component={HomePage} />
                   <Route
                     path="/categories"
                     exact
-                    component={() => <Pages.HomePage openCategories={true} />}
+                    component={() => <HomePage openCategories={true} />}
                   />
-                  <Route path="/people" exact component={Pages.PeoplePage} />
-                  <Route path="/planets" exact component={Pages.PlanetsPage} />
-                  <Route path="/starships" exact component={Pages.StarshipsPage} />
-                  <Route path="/films" exact component={Pages.FilmsPage} />
-                  <Route path="/species" exact component={Pages.SpeciesPage} />
-                  <Route path="/vehicles" exact component={Pages.VehiclesPage} />
+                  <Route
+                    path="/people"
+                    exact
+                    render={({ match }) => <List url={match.url} limit={12} />}
+                  />
+                  <Route
+                    path="/planets"
+                    exact
+                    render={({ match }) => <List url={match.url} limit={10} />}
+                  />
+                  <Route
+                    path="/starships"
+                    exact
+                    render={({ match }) => <List url={match.url} limit={6} />}
+                  />
+                  <Route
+                    path="/films"
+                    exact
+                    render={({ match }) => <List url={match.url} limit={9} />}
+                  />
+                  <Route
+                    path="/species"
+                    exact
+                    render={({ match }) => <List url={match.url} limit={10} />}
+                  />
+                  <Route
+                    path="/vehicles"
+                    render={({ match }) => <List url={match.url} limit={6} />}
+                  />
                   <Route
                     path="/people/:id"
-                    render={({ match }) => <PersonDetails itemId={match.params.id} />}
+                    render={({ match }) => <Details itemId={match.params.id} url={match.url} />}
                   />
                   <Route
                     path="/planets/:id"
-                    render={({ match }) => <PlanetDetails itemId={match.params.id} />}
+                    render={({ match }) => <Details itemId={match.params.id} url={match.url} />}
                   />
                   <Route
                     path="/starships/:id"
-                    render={({ match }) => <StarshipDetails itemId={match.params.id} />}
+                    render={({ match }) => <Details itemId={match.params.id} url={match.url} />}
                   />
                   <Route
                     path="/films/:id"
-                    render={({ match }) => <FilmDetails itemId={match.params.id} />}
+                    render={({ match }) => <Details itemId={match.params.id} url={match.url} />}
                   />
                   <Route
                     path="/species/:id"
-                    render={({ match }) => <SpecieDetails itemId={match.params.id} />}
+                    render={({ match }) => <Details itemId={match.params.id} url={match.url} />}
                   />
                   <Route
                     path="/vehicles/:id"
-                    render={({ match }) => <VehicleDetails itemId={match.params.id} />}
+                    render={({ match }) => <Details itemId={match.params.id} url={match.url} />}
                   />
                 </Switch>
               </main>
