@@ -3,9 +3,7 @@
 
 .breadcrump {
  position: relative;
- z-index: 2;
  display: flex;
- margin: 0 0 1rem 1.5rem;
  padding: 0;
  list-style: none;
 
@@ -20,7 +18,7 @@
   }
 
   & .last {
-   opacity: .7;
+   opacity: .5;
   }
 
   &:not(:last-child)::after {

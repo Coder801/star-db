@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 
@@ -22,8 +22,7 @@ const Details = ({ itemId, url }) => {
   const page = getCategotyFromUrl(url);
   const Component = Components[page];
   const { name, label, route } = CATEGORIES[page];
-
-  const breadcrump = [
+  const [breadcrump, updateBreadcrump] = useState([
     {
       path: "/",
       label: "Home"
@@ -31,20 +30,23 @@ const Details = ({ itemId, url }) => {
     {
       path: route,
       label
-    },
-    {
-      label: "Test"
     }
-  ];
+  ]);
+
+  const onLoadData = page => {
+    const item = {
+      label: page
+    };
+    updateBreadcrump([...breadcrump, item]);
+  };
 
   return (
     <div className={style.page}>
       <nav className={style.breadcrump}>
         <Breadcrump paths={breadcrump} />
       </nav>
-      <h2 className={style.title}>{name}</h2>
       <div className={style.list}>
-        <Component itemId={itemId} />
+        <Component category={name} itemId={itemId} onLoadData={onLoadData} />
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Search from "../search";
+import { SwSearch } from "../sw-components";
 import Navigation from "../navigation";
 
 import logo from "./img/logo-header.png";
@@ -20,7 +20,7 @@ const Header = () => {
         </Link>
       </div>
       <div className={style.search}>
-        <Search />
+        <SwSearch />
       </div>
     </div>
   );

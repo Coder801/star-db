@@ -20,8 +20,6 @@ const BreadcrumpText = ({ label, key }) => (
 
 const Breadcrump = ({ paths }) => {
   const links = paths.map(({ path, label }, key) => {
-    console.log(label);
-
     return path ? (
       <BreadcrumpLink path={path} label={label} key={key} />
     ) : (

@@ -7,7 +7,8 @@ import {
   transformVehicle,
   transformStarship
 } from "./handlers";
-import { API_BASE } from "./../constants";
+import { API_BASE, CATEGORIES } from "./../constants";
+const { people, films, species, starships, vehicles, planets } = CATEGORIES;
 
 interface Service {
   get(url: string, conf?: object): Promise<any>;
@@ -16,10 +17,10 @@ interface Service {
 class SwapiService {
   private service: Service = new ApiService({ baseURL: API_BASE });
 
-  private getAll = async (url: string, handler: any, limit: number = 10) => {
+  private getAll = async (url: string, handler: any, limit: number = 100, config: object = {}) => {
     const getDataRecursiveByLimit = async (limit: number) => {
       const getData = async (url: string, data: object[] = []): Promise<any> => {
-        const response = await this.service.get(url);
+        const response = await this.service.get(url, config);
         data.push(...response.data.results);
 
         if (limit > data.length && response.data.next) {
@@ -38,8 +39,8 @@ class SwapiService {
     return response.map(handler);
   };
 
-  private getById = async (url: string, handler: any) => {
-    const response = await this.service.get(url);
+  private getById = async (url: string, handler: any, config: object = {}) => {
+    const response = await this.service.get(url, config);
     return handler(response.data);
   };
 
@@ -48,26 +49,62 @@ class SwapiService {
     return response.data.count;
   };
 
-  getAllPeople = async (limit: number) => await this.getAll("/people", transformPerson, limit);
-  getPerson = async (id: number) => await this.getById(`/people/${id}/`, transformPerson);
+  private getBySearch = async (value: string) => {
+    // const data = routes.reduce(async (acc: any, route: string) => {
+    //   const accumulator = await acc.then();
+    //   const response = await this.service.get(route, {
+    //     params: {
+    //       search: value
+    //     }
+    //   });
+    //   accumulator.push(response.data);
+    //   return Promise.resolve(accumulator);
+    // }, Promise.resolve([]));
+    // return data;
 
-  getAllFilms = async (limit: number) => await this.getAll("/films", transformFilm, limit);
-  getFilm = async (id: number) => await this.getById(`/films/${id}/`, transformFilm);
+    const result = Promise.all([
+      this.getAllPeople(10),
+      this.getAllFilms(10),
+      this.getAllPlanets(10),
+      this.getAllSpecies(10),
+      this.getAllVehicles(10),
+      this.getAllStarships(10)
+    ]);
 
-  getAllPlanets = async (limit: number) => await this.getAll("/planets", transformPlanet, limit);
-  getPlanet = async (id: number) => await this.getById(`/planets/${id}/`, transformPlanet);
+    return result.then(values =>
+      values.reduce((accumulator, current) => accumulator.concat(current), [])
+    );
+  };
 
-  getAllSpecies = async (limit: number) => await this.getAll("/species", transformSpecie, limit);
-  getSpecie = async (id: number) => await this.getById(`/species/${id}/`, transformSpecie);
+  getAllPeople = async (limit: number, config: object = {}) =>
+    await this.getAll(people.route, transformPerson, limit, config);
+  getPerson = async (id: number) => await this.getById(`${people.route}/${id}/`, transformPerson);
 
-  getAllVehicles = async (limit: number) => await this.getAll("/vehicles", transformVehicle, limit);
-  getVehicle = async (id: number) => await this.getById(`/vehicles/${id}/`, transformVehicle);
+  getAllFilms = async (limit: number, config: object = {}) =>
+    await this.getAll(films.route, transformFilm, limit, config);
+  getFilm = async (id: number) => await this.getById(`${films.route}/${id}/`, transformFilm);
 
-  getAllStarships = async (limit: number) =>
-    await this.getAll("/starships", transformStarship, limit);
-  getStarship = async (id: number) => await this.getById(`/starships/${id}/`, transformStarship);
+  getAllPlanets = async (limit: number, config: object = {}) =>
+    await this.getAll(planets.route, transformPlanet, limit, config);
+  getPlanet = async (id: number) => await this.getById(`${planets.route}/${id}/`, transformPlanet);
+
+  getAllSpecies = async (limit: number, config: object = {}) =>
+    await this.getAll(species.route, transformSpecie, limit, config);
+  getSpecie = async (id: number) => await this.getById(`${species.route}/${id}/`, transformSpecie);
+
+  getAllVehicles = async (limit: number, config: object = {}) =>
+    await this.getAll(vehicles.route, transformVehicle, limit, config);
+  getVehicle = async (id: number) =>
+    await this.getById(`${vehicles.route}/${id}/`, transformVehicle);
+
+  getAllStarships = async (limit: number, config: object = {}) =>
+    await this.getAll(starships.route, transformStarship, limit, config);
+  getStarship = async (id: number) =>
+    await this.getById(`${starships.route}/${id}/`, transformStarship);
 
   getTotalPlanets = async (id: number) => await this.getCount(`/planets/`);
+
+  getFromSearch = async (search: string) => await this.getBySearch(search);
 }
 
 export default SwapiService;

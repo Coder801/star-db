@@ -1,64 +1,210 @@
 @import '../../styles/variables.scss';
 
 .details {
- display: flex;
- align-items: flex-start;
- justify-content: center;
  margin: 0 auto;
- width: 80%;
-
- & .figure {
-  margin: 0;
-  padding: .5rem;
-  width: 300px;
-  border: 1px solid $white;
- }
-
- & .image {
-  max-width: 100%;
- }
-
- & .description {
-  padding-left: 3rem;
-  width: 40%;
- }
+ padding: 1rem 1rem 1rem;
 
  & .title {
-  margin: -10px 0 20px 0;
+  margin: -10px 0 2rem 0;
   color: $white;
   font-size: 4rem;
  }
-}
+
+ & .info {
+  & {
+   display: flex;
+   align-items: flex-start;
+   justify-content: center;
+  }
+
+  & .figure {
+   position: relative;
+   margin: 0;
+   padding: .5rem;
+   width: 300px;
 
 
+   &:before,
+   &:after {
+    position: absolute;
+    display: block;
+    width: 50%;
+    height: 50%;
+    border: 1px solid $white;
+    content: '';
+    transition: all .5s ease;
+   }
 
-.list {
- display: flex;
- flex-wrap: wrap;
- margin: 0;
- padding: 0;
- list-style: none;
+   &:before {
+    bottom: 0;
+    left: 0;
+    border-top: 0;
+    border-right: 0;
+   }
+   &:after {
+    top: 0;
+    right: 0;
+    border-bottom: 0;
+    border-left: 0;
+   }
 
- & .item {
-  position: relative;
-  display: block;
-  padding: .75rem 0;
-  width: 50%;
-  color: $white;
+   & .image {
+    max-width: 100%;
+    width: 100%;
+   }
+  }
+
+  & .description {
+   padding-left: 3rem;
+   width: 40%;
+
+   & .list {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    & .item {
+     position: relative;
+     display: block;
+     margin-top: -5px;
+     padding: 0 0 1.5rem 0;
+     width: 50%;
+     color: $white;
+
+     &.full {
+      width: 100% !important;
+     }
+
+     & .label {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 1.5rem;
+     }
+
+     & .field {
+      display: inline-block;
+      overflow: hidden;
+      box-sizing: border-box;
+      padding: .15em 1rem;
+      max-width: 100%;
+      border: 1px solid $white;
+      color: $white;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-weight: 500;
+      font-size: 1.8rem;
+     }
+
+     & .text {
+      display: inline-block;
+      box-sizing: border-box;
+      padding: .15em 0;
+      max-width: 100%;
+      color: $white;
+      white-space: pre;
+      font-weight: 500;
+      font-size: 1.8rem;
+     }
+    }
+   }
+  }
  }
 
- & .label {
-  display: block;
-  margin-bottom: 10px;
-  font-size: 1.2rem;
+ &.starships,
+ &.vehicles {
+  & .info {
+   margin: 0 auto;
+   width: 90%;
+
+   & .figure {
+    width: 40%;
+   }
+
+   & .description {
+    padding-left: 3rem;
+    width: calc(60% - 3rem);
+
+    & .list {
+     & .item {
+      margin-right: 2%;
+      width: 30%;
+     }
+    }
+   }
+  }
  }
 
- & .field {
-  display: inline-block;
-  padding: .15em 1rem;
-  border: 1px solid $white;
-  color: $white;
-  font-weight: 500;
-  font-size: 1.8rem;
+ &.planets {
+  & .info {
+   margin: 0 auto;
+   width: 80%;
+
+   & .figure {
+    width: 35%;
+   }
+
+   & .description {
+    padding-left: 3rem;
+    width: calc(65% - 3rem);
+
+    & .list {
+     & .item {
+      margin-right: 2%;
+      width: 30%;
+     }
+    }
+   }
+  }
+ }
+
+ &.films {
+  & .info {
+   margin: 0 auto;
+   width: 90%;
+
+   & .figure {
+    width: 37%;
+   }
+
+   & .description {
+    padding-left: 3rem;
+    width: calc(63% - 3rem);
+
+    & .list {
+     display: block;
+     column-width: 50%;
+     column-count: 2;
+     column-gap: 4rem;
+     & .item {
+      width: 100%;
+     }
+    }
+   }
+  }
+ }
+
+ &.species,
+ &.characters {
+  & .info {
+   margin: 0 auto;
+   width: 75%;
+
+   & .figure {
+    width: 35%;
+   }
+
+   & .description {
+    padding-left: 3rem;
+    width: calc(65% - 3rem);
+
+    & .list {
+     & .item {
+      width: 50%;
+     }
+    }
+   }
+  }
  }
 }

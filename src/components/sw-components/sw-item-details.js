@@ -51,8 +51,8 @@ const planetDetails = props => {
       <ListItem field="orbitalPeriod" label="Orbital Period" />
       <ListItem field="climate" label="Climate" />
       <ListItem field="gravity" label="Gravity" />
-      <ListItem field="terrain" label="Terrain" />
       <ListItem field="surfaceWater" label="Surface Water" />
+      <ListItem size="full" field="terrain" label="Terrain" />
     </ItemDetails>
   );
 };
@@ -65,15 +65,13 @@ const starshipDetails = props => {
       <ListItem field="cargoCapacity" label="Cargo Capacity" />
       <ListItem field="consumables" label="Consumables" />
       <ListItem field="costInCredits" label="Cost In Credits" />
-      <ListItem field="created" label="Created" />
       <ListItem field="crew" label="Crew" />
-      <ListItem field="edited" label="Edited" />
       <ListItem field="hyperdriveRating" label="Hyperdrive Rating" />
       <ListItem field="length" label="Length" />
-      <ListItem field="manufacturer" label="Manufacturer" />
-      <ListItem field="maxAtmospheringSpeed" label="Max Atmosphering Speed" />
-      <ListItem field="model" label="Model" />
       <ListItem field="passengers" label="Passengers" />
+      <ListItem size="full" field="manufacturer" label="Manufacturer" />
+      <ListItem size="full" field="model" label="Model" />
+      <ListItem size="full" field="maxAtmospheringSpeed" label="Max Atmosphering Speed" />
     </ItemDetails>
   );
 };
@@ -81,9 +79,8 @@ const starshipDetails = props => {
 const filmDetails = props => {
   return (
     <ItemDetails {...props}>
-      <ListItem field="title" label="Title" />
+      <ListItemDesc field="openingCrawl" label="Opening Crawl" />
       <ListItem field="episodeId" label="Episode" />
-      <ListItem field="openingCrawl" label="Opening Crawl" />
       <ListItem field="director" label="Director" />
       <ListItem field="producer" label="Producer" />
       <ListItem field="releaseDate" label="Release Date" />
@@ -102,8 +99,8 @@ const specieDetails = props => {
       <ListItem field="hairColors" label="Hair Colors" />
       <ListItem field="eyeColors" label="Eye Colors" />
       <ListItem field="averageLifespan" label="Average Lifespan" />
-      <ListItem field="homeworld" label="Homeworld" />
       <ListItem field="language" label="Language" />
+      {/* <ListItem field="homeworld" label="Homeworld" /> */}
     </ItemDetails>
   );
 };

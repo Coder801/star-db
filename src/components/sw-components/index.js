@@ -16,6 +16,8 @@ import {
   VehicleDetails
 } from "./sw-item-details";
 
+import { SwSearch } from "./sw-search";
+
 export {
   PersonList,
   FilmsList,
@@ -28,5 +30,6 @@ export {
   StarshipDetails,
   FilmDetails,
   SpecieDetails,
-  VehicleDetails
+  VehicleDetails,
+  SwSearch
 };

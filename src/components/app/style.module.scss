@@ -56,53 +56,8 @@
  }
 }
 
-
-
-
 .page {
- &::after,
- &::before {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  width: 100%;
-  height: 100%;
-  content: '';
- }
-
- &::before {
-  background-image: radial-gradient(circle at bottom, transparent 10%, #042b46 100%), url('./img/background.jpg');
-  background-attachment: fixed;
-  background-size: cover;
-  background-repeat: no-repeat;
- }
-
- &:after {
-  //background-image: linear-gradient(to right, transparent 0%, #1a1615 0%, #1a1615);
-  background-attachment: fixed;
-  background-size: cover;
-  background-repeat: no-repeat;
-  opacity: .6;
- }
-
- &.list {
-  &::before {
-   filter: blur(5px);
-  }
- }
-
- &.categorie {
-  &::before {
-   filter: blur(5px);
-  }
- }
-
- &.details {
-  &::before {
-   filter: blur(5px);
-  }
- }
+ padding: 0;
 }
 
 .header {
@@ -111,7 +66,4 @@
 
 .main {
  padding: 0;
-}
-
-.aside {
 }

@@ -58,6 +58,7 @@ export default class App extends Component {
                   />
                   <Route
                     path="/vehicles"
+                    exact
                     render={({ match }) => <List url={match.url} limit={6} />}
                   />
                   <Route
