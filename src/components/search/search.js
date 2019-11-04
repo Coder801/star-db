@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { toLower } from "ramda";
 
 import style from "./style.module.scss";
 
@@ -10,42 +11,50 @@ class Search extends Component {
     allResults: []
   };
 
-  onChange = event => {
+  getSearchResults = async value => {
     const { getData } = this.props;
+
+    return await getData(value).then(allResults => allResults);
+  };
+
+  createSortedArray = (data, value) => {
+    const startPattern = new RegExp(`^${value}`, "i");
+    const fullPattern = new RegExp(value, "i");
+    const filterWithStart = data.filter(item => startPattern.test(item.name));
+    const filterRest = data
+      .filter(({ name }) => !startPattern.test(toLower(name)))
+      .filter(({ name }) => fullPattern.test(toLower(name)));
+
+    return filterWithStart.concat(filterRest);
+  };
+
+  onChange = async event => {
     const { value } = event.currentTarget;
-    const updateSearchResults = data => {
-      const result = data.sort(itemA => {
-        const a = itemA.name.toLowerCase();
-        const b = value.toLowerCase();
+    const { searchResults, allResults } = this.state;
 
-        if (a < b) {
-          return -1;
-        }
-        if (a > b) {
-          return 1;
-        }
-        return 0;
-      }); //.slice(0, 5);
-      console.log(result);
-
+    if (allResults.length && value) {
+      const sorted = await this.createSortedArray(allResults, value);
       this.setState({
-        searchResults: result
+        value,
+        searchResults: sorted.slice(0, 5)
       });
-    };
-
-    this.setState({
-      value
-    });
-
-    if (!this.state.value) {
-      getData(value).then(allResults => {
-        this.setState({
-          allResults
-        });
-        updateSearchResults(allResults);
+    } else if (!value) {
+      this.setState({
+        value,
+        searchResults: [],
+        allResults: []
       });
     } else {
-      updateSearchResults(this.state.allResults);
+      const results = await this.getSearchResults(value);
+      const sorted = await this.createSortedArray(results, value);
+
+      console.log(results);
+
+      this.setState({
+        value,
+        allResults: results,
+        searchResults: sorted.slice(0, 5)
+      });
     }
   };
 

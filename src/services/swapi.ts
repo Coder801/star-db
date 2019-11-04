@@ -8,6 +8,7 @@ import {
   transformStarship
 } from "./handlers";
 import { API_BASE, CATEGORIES } from "./../constants";
+import Search from "../components/search";
 const { people, films, species, starships, vehicles, planets } = CATEGORIES;
 
 interface Service {
@@ -62,13 +63,19 @@ class SwapiService {
     // }, Promise.resolve([]));
     // return data;
 
+    const config = {
+      params: {
+        search: value
+      }
+    }
+
     const result = Promise.all([
-      this.getAllPeople(10),
-      this.getAllFilms(10),
-      this.getAllPlanets(10),
-      this.getAllSpecies(10),
-      this.getAllVehicles(10),
-      this.getAllStarships(10)
+      this.getAllPeople(10, config),
+      this.getAllFilms(10, config),
+      this.getAllPlanets(10, config),
+      this.getAllSpecies(10, config),
+      this.getAllVehicles(10, config),
+      this.getAllStarships(10, config)
     ]);
 
     return result.then(values =>
