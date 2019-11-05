@@ -1,12 +1,18 @@
 import React, { Component, useState, setState } from "react";
 import { Link } from "react-router-dom";
 import { toLower, mergeRight } from "ramda";
-import { regexp } from "../../helpers";
 import Spinner from "../../containers/spinner";
+
+import { regexp } from "../../helpers";
 
 import style from "./search.module.scss";
 
-const SearchResults = ({ data, onClick }) => {
+const SearchResults = ({ data, match, onClick }) => {
+  const wrapMatch = (string, match) => {
+    const pattern = regexp(`(${match})`, "g");
+    return { __html: string.replace(pattern, `<span>$1</span>`) };
+  };
+
   const resultsList = results =>
     results.map(({ image, name, category, id }, key) => (
       <li className={style.item} key={key}>
@@ -15,9 +21,12 @@ const SearchResults = ({ data, onClick }) => {
             <img src={image} />
           </div>
         </figure>
-        <Link className={style.link} onClick={onClick} to={`/${category}/${id}`}>
-          {name}
-        </Link>
+        <Link
+          className={style.link}
+          onClick={onClick}
+          to={`/${category}/${id}`}
+          dangerouslySetInnerHTML={wrapMatch(name, match)}
+        ></Link>
       </li>
     ));
 
@@ -90,9 +99,11 @@ const Search = ({ getData }) => {
   return (
     <div className={`${style.search} ${inputOpen}`}>
       <div className={style.icon} onClick={openSearch}></div>
-      <input type="text" className={style.input} onChange={onChange} value={value} placeholder="Search..." />
+      <input className={style.input} onChange={onChange} value={value} placeholder="Search..." />
       <div className={style.spinner}>{loading && <Spinner size={1} width={2} />}</div>
-      <div className={style.result}>{value && !loading && <SearchResults data={results} onClick={onSelect} />}</div>
+      <div className={style.result}>
+        {value && !loading && <SearchResults data={results} onClick={onSelect} match={value} />}
+      </div>
     </div>
   );
 };
