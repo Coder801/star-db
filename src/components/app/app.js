@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import Header from "../header";
 import ErrorBoundry from "../error-boundry";
-import { HomePage, List, Details } from "../../pages";
+import { HomePage, SearchPage, List, Details } from "../../pages";
 
 import SwapiService from "../../services/swapi";
 import { SwapiServiceProvider } from "../context";
@@ -56,6 +56,10 @@ export default class App extends Component {
                   <Route
                     path="/vehicles/:id"
                     render={({ match }) => <Details itemId={match.params.id} url={match.url} />}
+                  />
+                  <Route
+                    path="/search/:key"
+                    render={({ match }) => <SearchPage itemId={match.params.id} url={match.url} />}
                   />
                 </Switch>
               </main>

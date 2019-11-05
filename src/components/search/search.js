@@ -74,6 +74,10 @@ const Search = ({ getData }) => {
     return filterWithStart.concat(filterRest);
   };
 
+  const onPressEnter = () => {
+    const { value, allResults } = state;
+  };
+
   const onChange = async event => {
     const { value } = event.currentTarget;
     const { allResults } = state;
