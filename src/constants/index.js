@@ -2,7 +2,7 @@ export const API_BASE = "https://swapi.co/api";
 export const API_IMAGE_BASE = "https://starwars-visualguide.com/assets/img";
 export const CATEGORIES = {
   people: {
-    name: "characters",
+    name: "people",
     label: "Characters",
     route: "/people",
     imageUrl: "characters",

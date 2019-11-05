@@ -7,10 +7,12 @@ const { films } = CATEGORIES;
 const transformFilm = (data: IFilmInput): IFilmOutput => {
   const id = extractIdFromUrl(data.url);
   const image = joinImagePathUrl.jpg(API_IMAGE_BASE, films.imageUrl, id.toString());
+  const category = films.name;
 
   return {
     id,
     image,
+    category,
     name: data.title,
     episodeId: data.episode_id,
     openingCrawl: data.opening_crawl,

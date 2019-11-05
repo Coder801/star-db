@@ -7,10 +7,12 @@ const { people } = CATEGORIES;
 const transformPerson = (data: IPersonInput): IPersonOutput => {
   const id = extractIdFromUrl(data.url);
   const image = joinImagePathUrl.jpg(API_IMAGE_BASE, people.imageUrl, id.toString());
+  const category = people.name;
 
   return {
     id,
     image,
+    category,
     name: data.name,
     height: data.height,
     mass: data.mass,

@@ -7,10 +7,12 @@ const { vehicles } = CATEGORIES;
 const transformVehicle = (data: IVehicleInput): IVehicleOutput => {
   const id = extractIdFromUrl(data.url);
   const image = joinImagePathUrl.jpg(API_IMAGE_BASE, vehicles.imageUrl, id.toString());
+  const category = vehicles.name;
 
   return {
     id,
     image,
+    category,
     name: data.name,
     model: data.model,
     manufacturer: data.manufacturer,

@@ -7,10 +7,12 @@ const { species } = CATEGORIES;
 const transformSpecie = (data: ISpecieInput): ISpecieOutput => {
   const id = extractIdFromUrl(data.url);
   const image = joinImagePathUrl.jpg(API_IMAGE_BASE, species.imageUrl, id.toString());
+  const category = species.name;
 
   return {
     id,
     image,
+    category,
     name: data.name,
     classification: data.classification,
     designation: data.designation,

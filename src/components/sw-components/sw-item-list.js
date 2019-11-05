@@ -4,26 +4,6 @@ import React from "react";
 import ItemList from "../item-list";
 import { withData, withFunc, withSwapiService } from "../hoc-helpers";
 
-// const methodToProps = ({
-//   getAllPeople,
-//   getAllFilms,
-//   getAllPlanets,
-//   getAllSpecies,
-//   getAllVehicles,
-//   getAllStarships
-// }) => {
-//   let result;
-//   return {
-//     persons: () => ({
-//       getData: getAllPeople
-//     }),
-
-//     films: () => ({
-//       getData: getAllPlanets
-//     })
-//   };
-// };
-
 const personsMethodToProps = swapiService => ({
   getData: swapiService.getAllPeople
 });

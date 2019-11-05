@@ -14,50 +14,80 @@ $inputOpenWidth: 250px;
   }
  }
 
+ & .spinner {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: block;
+  width: 60px;
+  height: 60px;
+  opacity: 0;
+
+  &.loading {
+   opacity: 1;
+  }
+
+  & > div {
+   padding: 0;
+  }
+ }
+
  & .result {
   position: absolute;
   top: 100%;
-  margin: 0;
-  padding: 0;
   width: 100%;
-  list-style: none;
 
-  & .item {
-   display: flex;
-   box-sizing: border-box;
-   width: 100%;
-   //color: $white;
-   border: 1px solid $white;
-   border-bottom: 0;
+  & .list {
+   margin: 0;
+   padding: 0;
+   list-style: none;
 
-   &:last-child {
-    border-bottom: 1px solid $white;
-   }
-
-   & .thumbnail {
-    overflow: hidden;
+   & .item {
+    display: flex;
     box-sizing: border-box;
-    margin: 0;
-    padding: 10px;
-    width: 60px;
-    height: 60px;
-    border-right: 1px solid $white;
+    width: 100%;
+    border: 1px solid $white;
+    border-bottom: 0;
 
-    & .image {
+    &:last-child {
+     border-bottom: 1px solid $white;
+    }
+
+    & .thumbnail {
      overflow: hidden;
-     width: 100%;
-     height: 100%;
+     box-sizing: border-box;
+     margin: 0;
+     padding: 10px;
+     width: 60px;
+     height: 60px;
+     border-right: 1px solid $white;
 
-     & > img {
-      max-width: 100%;
+     & .image {
+      overflow: hidden;
+      width: 100%;
+      height: 100%;
+
+      & > img {
+       max-width: 100%;
+      }
      }
     }
-   }
-   & .text {
-    margin: 0;
-    padding: 0 15px;
-    color: $white;
-    line-height: 60px;
+    & .link {
+     overflow: hidden;
+     margin: 0;
+     padding: 0 15px;
+     width: calc(100% - 90px);
+     color: $white;
+     text-decoration: none;
+     text-overflow: ellipsis;
+     white-space: nowrap;
+     font-size: 1.2rem;
+     line-height: 60px;
+
+     &:hover {
+      background-color: rgba(240, 240, 240, .3);
+     }
+    }
    }
   }
  }
@@ -119,6 +149,7 @@ $inputOpenWidth: 250px;
  transition-timing-function: ease;
  transition-duration: .8s;
  transition-property: opacity, width, padding;
+
 
  &.show {
   padding: 0 1rem;

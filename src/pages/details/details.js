@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
+import { concat } from "ramda";
 
 import Breadcrump from "../../components/breadcrump";
 import * as SwComponents from "../../components/sw-components";
@@ -19,10 +20,11 @@ const Components = {
 };
 
 const Details = ({ itemId, url }) => {
+  const [breadcrump, updateBreadcrump] = useState([]);
   const page = getCategotyFromUrl(url);
   const Component = Components[page];
   const { name, label, route } = CATEGORIES[page];
-  const [breadcrump, updateBreadcrump] = useState([
+  const breadcrumpRoot = [
     {
       path: "/",
       label: "Home"
@@ -31,13 +33,13 @@ const Details = ({ itemId, url }) => {
       path: route,
       label
     }
-  ]);
+  ];
 
   const onLoadData = page => {
     const item = {
       label: page
     };
-    updateBreadcrump([...breadcrump, item]);
+    updateBreadcrump(concat(breadcrumpRoot, [item]));
   };
 
   return (

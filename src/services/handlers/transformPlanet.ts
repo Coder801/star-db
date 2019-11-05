@@ -7,10 +7,12 @@ const { planets } = CATEGORIES;
 const transformPlanet = (data: IPlanetInput): IPanetOutput => {
   const id = extractIdFromUrl(data.url);
   const image = joinImagePathUrl.jpg(API_IMAGE_BASE, planets.imageUrl, id.toString());
+  const category = planets.name;
 
   return {
     id,
     image,
+    category,
     name: data.name,
     rotationPeriod: data.rotation_period,
     orbitalPeriod: data.orbital_period,

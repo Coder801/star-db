@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import style from "./style.module.scss";
-import Categories from "../categories";
 
 const ItemList = ({ category, ...props }) => {
   const renderList = ({ data, onSelect, children: labelOutput }) =>

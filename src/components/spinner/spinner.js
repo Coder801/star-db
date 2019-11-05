@@ -3,10 +3,11 @@ import PropTypes from "prop-types";
 
 import style from "./style.module.css";
 
-const Spinner = ({ size = 6 }) => {
+const Spinner = ({ size = 6, width = 8 }) => {
   const inlineStyle = {
     width: `${size}rem`,
-    height: `${size}rem`
+    height: `${size}rem`,
+    borderWidth: `${width}px`
   };
   return (
     <div className={style.spinner}>
