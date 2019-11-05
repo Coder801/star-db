@@ -1,120 +1,13 @@
-import React, { Component } from "react";
+import React, { Component, useState, setState } from "react";
 import { Link } from "react-router-dom";
-import { toLower } from "ramda";
-import Spinner from "../spinner";
+import { toLower, mergeRight } from "ramda";
+import { regexp } from "../../helpers";
+import Spinner from "../../containers/spinner";
 
-import style from "./style.module.scss";
+import style from "./search.module.scss";
 
-class Search extends Component {
-  state = {
-    open: true,
-    loading: false,
-    value: "",
-    searchResults: [],
-    allResults: []
-  };
-
-  getSearchResults = async value => {
-    const { getData } = this.props;
-
-    return await getData(value).then(allResults => allResults);
-  };
-
-  createSortedArray = (data, value) => {
-    const startPattern = new RegExp(`^${value}`, "i");
-    const fullPattern = new RegExp(value, "i");
-    const filterWithStart = data.filter(item => startPattern.test(item.name));
-    const filterRest = data
-      .filter(({ name }) => !startPattern.test(toLower(name)))
-      .filter(({ name }) => fullPattern.test(toLower(name)));
-
-    return filterWithStart.concat(filterRest);
-  };
-
-  onChange = async event => {
-    const { value } = event.currentTarget;
-    const { allResults } = this.state;
-
-    this.setState({
-      value,
-      loading: true
-    });
-
-    if (allResults.length && value) {
-      const sorted = await this.createSortedArray(allResults, value);
-      this.setState({
-        searchResults: sorted.slice(0, 5),
-        loading: false
-      });
-    } else if (!value) {
-      this.setState({
-        searchResults: [],
-        allResults: [],
-        loading: false
-      });
-    } else {
-      const results = await this.getSearchResults(value);
-      const sorted = await this.createSortedArray(results, value);
-
-      this.setState({
-        allResults: results,
-        searchResults: sorted.slice(0, 5),
-        loading: false
-      });
-    }
-  };
-
-  onSelectResult = event => {
-    this.setState({
-      allResults: [],
-      searchResults: [],
-      value: ""
-    });
-  };
-
-  onFocus = event => {
-    this.setState({
-      open: true
-    });
-  };
-
-  onBlur = event => {
-    this.setState({
-      open: false
-    });
-  };
-
-  render() {
-    const { open, value, searchResults, loading } = this.state;
-
-    const inputShow = open || value ? style.show : "";
-    const spinnerShow = loading ? style.loading : "";
-
-    return (
-      <div className={`${style.search}`}>
-        <div className={style.icon}>Search</div>
-        <input
-          type="text"
-          className={`${style.input} ${inputShow}`}
-          onChange={this.onChange}
-          onFocus={this.onFocus}
-          onBlur={this.onBlur}
-          value={value}
-          placeholder="Search..."
-        />
-        <div className={`${style.spinner} ${spinnerShow}`}>
-          <Spinner size={1} width={2} />
-        </div>
-        <div className={style.result}>
-          <Results data={searchResults} onClick={this.onSelectResult} />
-        </div>
-      </div>
-    );
-  }
-}
-
-const Results = ({ data, onClick }) => {
-  const renderResults = results =>
+const SearchResults = ({ data, onClick }) => {
+  const resultsList = results =>
     results.map(({ image, name, category, id }, key) => (
       <li className={style.item} key={key}>
         <figure className={style.thumbnail}>
@@ -128,7 +21,80 @@ const Results = ({ data, onClick }) => {
       </li>
     ));
 
-  return <ul className={style.list}>{renderResults(data)}</ul>;
+  const noResults = text => {
+    return (
+      <li className={style.item}>
+        <p className={style.text}>{text}</p>
+      </li>
+    );
+  };
+
+  const result = data.length ? resultsList(data) : noResults("No Results...");
+
+  return <ul className={style.list}>{result}</ul>;
+};
+
+const Search = ({ getData }) => {
+  const [state, setState] = useState({
+    loading: false,
+    open: false,
+    allResults: [],
+    results: [],
+    value: ""
+  });
+
+  const onSelect = () => {
+    setState(state => mergeRight(state, { results: [], value: "" }));
+  };
+
+  const openSearch = () => {
+    setState(state => mergeRight(state, { open: !state.open }));
+  };
+
+  const getDataByValue = async value => await getData(value).then(allResults => allResults);
+
+  const sortArrayByValue = (array, value) => {
+    const match = toLower(value);
+    const startPattern = regexp(`^(${match}).*`);
+    const fullPattern = regexp(match);
+    const filterWithStart = array.filter(({ name }) => startPattern.test(toLower(name)));
+    const filterRest = array
+      .filter(({ name }) => !startPattern.test(toLower(name)))
+      .filter(({ name }) => fullPattern.test(toLower(name)));
+
+    return filterWithStart.concat(filterRest);
+  };
+
+  const onChange = async event => {
+    const { value } = event.currentTarget;
+    const { allResults } = state;
+
+    setState(state => mergeRight(state, { value, loading: true }));
+
+    if (allResults.length && value) {
+      const results = await sortArrayByValue(allResults, value).slice(0, 5);
+      setState(state => mergeRight(state, { results, loading: false }));
+    } else if (!value) {
+      setState(state => mergeRight(state, { allResults: [], results: [], loading: false }));
+    } else {
+      const allResults = await getDataByValue(value);
+      const results = await sortArrayByValue(allResults, value).slice(0, 5);
+      setState(state => mergeRight(state, { allResults, results, loading: false }));
+    }
+  };
+
+  const { open, value, results, loading } = state;
+
+  const inputOpen = open || value ? style.open : "";
+
+  return (
+    <div className={`${style.search} ${inputOpen}`}>
+      <div className={style.icon} onClick={openSearch}></div>
+      <input type="text" className={style.input} onChange={onChange} value={value} placeholder="Search..." />
+      <div className={style.spinner}>{loading && <Spinner size={1} width={2} />}</div>
+      <div className={style.result}>{value && !loading && <SearchResults data={results} onClick={onSelect} />}</div>
+    </div>
+  );
 };
 
 export default Search;

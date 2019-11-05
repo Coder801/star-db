@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import style from "./style.module.scss";
+import style from "./categories.module.scss";
 import { CATEGORIES } from "../../constants";
 
 import img1 from "./img/characters.jpg";

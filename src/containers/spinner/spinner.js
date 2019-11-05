@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import style from "./style.module.css";
+import style from "./spinner.module.css";
 
 const Spinner = ({ size = 6, width = 8 }) => {
   const inlineStyle = {
@@ -19,5 +19,6 @@ const Spinner = ({ size = 6, width = 8 }) => {
 export default Spinner;
 
 Spinner.propTypes = {
-  size: PropTypes.number
+  size: PropTypes.number,
+  width: PropTypes.number
 };

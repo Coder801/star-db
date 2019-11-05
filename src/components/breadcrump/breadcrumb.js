@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-import style from "./style.module.scss";
+import style from "./breadcrumb.module.scss";
 
 const BreadcrumpLink = ({ path, label, key }) => (
   <li className={style.item} key={key}>
@@ -20,11 +20,7 @@ const BreadcrumpText = ({ label, key }) => (
 
 const Breadcrump = ({ paths }) => {
   const links = paths.map(({ path, label }, key) => {
-    return path ? (
-      <BreadcrumpLink path={path} label={label} key={key} />
-    ) : (
-      <BreadcrumpText label={label} key={key} />
-    );
+    return path ? <BreadcrumpLink path={path} label={label} key={key} /> : <BreadcrumpText label={label} key={key} />;
   });
 
   return <ul className={style.breadcrump}>{links}</ul>;

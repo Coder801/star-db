@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import Spinner from "../spinner";
-import ErrorIndicator from "../error-indicator";
+import Spinner from "../../containers/spinner";
+import ErrorIndicator from "../../containers/error-indicator";
 
 import SwapiService from "../../services/swapi";
 import { randomInteger } from "../../helpers";
 
-import style from "./style.module.css";
+import style from "./random-planet.module.css";
 
 export default class RandomPlanet extends Component {
   state = {
@@ -64,11 +64,7 @@ export default class RandomPlanet extends Component {
       return <ErrorIndicator />;
     }
 
-    const content = !loading ? (
-      <PlanetView planet={planet} onImageError={this.onImageError} />
-    ) : (
-      <Spinner />
-    );
+    const content = !loading ? <PlanetView planet={planet} onImageError={this.onImageError} /> : <Spinner />;
 
     return <div className="bg-light">{content}</div>;
   }

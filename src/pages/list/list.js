@@ -7,7 +7,7 @@ import * as SwComponents from "../../components/sw-components";
 import { CATEGORIES } from "../../constants";
 import { getCategotyFromUrl } from "../../helpers";
 
-import style from "./style.module.scss";
+import style from "./list.module.scss";
 
 const Components = {
   people: SwComponents.PersonList,

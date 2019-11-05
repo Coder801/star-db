@@ -5,7 +5,7 @@ import Navigation from "../navigation";
 
 import logo from "./img/logo-header.png";
 
-import style from "./style.module.scss";
+import style from "./header.module.scss";
 import { CATEGORIES as categories } from "../../constants";
 
 const Header = () => {

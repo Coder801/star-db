@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
-import Spinner from "../spinner";
-import ErrorIndicator from "../error-indicator";
+import Spinner from "../../containers/spinner";
+import ErrorIndicator from "../../containers/error-indicator";
 
 const withData = Wrapper => {
   return class extends Component {

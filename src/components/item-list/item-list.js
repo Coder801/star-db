@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import style from "./style.module.scss";
+import style from "./item-list.module.scss";
 
 const ItemList = ({ category, ...props }) => {
   const renderList = ({ data, onSelect, children: labelOutput }) =>
