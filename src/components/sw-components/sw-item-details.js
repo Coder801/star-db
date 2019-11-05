@@ -3,6 +3,7 @@ import React from "react";
 import ItemDetails, { ListItem, ListItemDesc, ListItemPoint } from "../item-details";
 import { withSwapiService } from "../hoc-helpers";
 
+// TODO: Wrap this code in abstract factory
 const personMethodsToProps = swapiService => ({
   getData: swapiService.getPerson
 });
