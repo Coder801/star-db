@@ -1,8 +1,9 @@
-import React, { Component, useState, setState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+import { Link, useHistory } from "react-router-dom";
 import { toLower, mergeRight } from "ramda";
-import Spinner from "../../containers/spinner";
 
+import Spinner from "../../containers/spinner";
 import { regexp } from "../../helpers";
 
 import style from "./search.module.scss";
@@ -18,7 +19,7 @@ const SearchResults = ({ data, match, onClick }) => {
       <li className={style.item} key={key}>
         <figure className={style.thumbnail}>
           <div className={style.image}>
-            <img src={image} />
+            <img src={image} alt="" />
           </div>
         </figure>
         <Link
@@ -52,6 +53,8 @@ const Search = ({ getData }) => {
     value: ""
   });
 
+  const history = useHistory();
+
   const onSelect = () => {
     setState(state => mergeRight(state, { results: [], value: "" }));
   };
@@ -74,8 +77,12 @@ const Search = ({ getData }) => {
     return filterWithStart.concat(filterRest);
   };
 
-  const onPressEnter = () => {
-    const { value, allResults } = state;
+  const onPressEnter = ({ key }) => {
+    if (key === "Enter") {
+      const { value } = state;
+      setState(state => mergeRight(state, { results: [], value: "" }));
+      history.push(`/search/${value}`);
+    }
   };
 
   const onChange = async event => {
@@ -103,13 +110,29 @@ const Search = ({ getData }) => {
   return (
     <div className={`${style.search} ${inputOpen}`}>
       <div className={style.icon} onClick={openSearch}></div>
-      <input className={style.input} onChange={onChange} value={value} placeholder="Search..." />
+      <input
+        className={style.input}
+        onChange={onChange}
+        onKeyDown={onPressEnter}
+        value={value}
+        placeholder="Search..."
+      />
       <div className={style.spinner}>{loading && <Spinner size={1} width={2} />}</div>
       <div className={style.result}>
         {value && !loading && <SearchResults data={results} onClick={onSelect} match={value} />}
       </div>
     </div>
   );
+};
+
+SearchResults.propTypes = {
+  data: PropTypes.object.isRequired,
+  match: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired
+};
+
+Search.propTypes = {
+  getData: PropTypes.func.isRequired
 };
 
 export default Search;
