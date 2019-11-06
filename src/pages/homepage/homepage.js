@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Link, useHistory, withRouter } from "react-router-dom";
+import React from "react";
+import { useHistory, withRouter } from "react-router-dom";
 
 import Categories from "../../components/categories";
 import Jumbotron from "../../components/jumbotron";
@@ -41,10 +41,10 @@ const Toggle = ({ isCategoriesOpen }) => {
   const { link, text, arrow } = states[state];
 
   return (
-    <a className={style.toggle} onClick={() => history.push(link)}>
+    <div className={style.toggle} onClick={() => history.push(link)}>
       <span className={style.text}>{text}</span>
       <span className={`${style.arrow} ${arrow}`}></span>
-    </a>
+    </div>
   );
 };
 

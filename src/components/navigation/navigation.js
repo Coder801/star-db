@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 
-import style from "./style.module.scss";
+import style from "./navigation.module.scss";
 
 const NavItem = ({ route, label }) => (
   <li className={style.item}>

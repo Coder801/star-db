@@ -8,7 +8,6 @@ import {
   transformStarship
 } from "./handlers";
 import { API_BASE, CATEGORIES } from "./../constants";
-import Search from "../components/search";
 const { people, films, species, starships, vehicles, planets } = CATEGORIES;
 
 interface Service {
