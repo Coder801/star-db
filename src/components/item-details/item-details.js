@@ -1,8 +1,8 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
-import Spinner from "../spinner";
+import Spinner from "../../containers/spinner";
 
-import style from "./style.module.scss";
+import style from "./item-details.module.scss";
 
 class ItemDetails extends Component {
   static propTypes = {
@@ -44,13 +44,7 @@ class ItemDetails extends Component {
     const { data } = this.state;
 
     return data ? (
-      <Details
-        name={data.name}
-        image={data.image}
-        data={data}
-        records={children}
-        category={category}
-      />
+      <Details name={data.name} image={data.image} data={data} records={children} category={category} />
     ) : (
       <Spinner />
     );
@@ -83,9 +77,7 @@ const Details = ({ name, image, data, records, category }) => (
         <img className={style.image} src={image} alt={name} />
       </figure>
       <div className={style.description}>
-        <ul className={style.list}>
-          {React.Children.map(records, record => React.cloneElement(record, { data }))}
-        </ul>
+        <ul className={style.list}>{React.Children.map(records, record => React.cloneElement(record, { data }))}</ul>
       </div>
     </div>
   </div>

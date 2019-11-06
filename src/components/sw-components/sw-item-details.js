@@ -1,6 +1,6 @@
 import React from "react";
 
-import ItemDetails, { ListItem, ListItemDesc, ListItemPoint } from "../item-details";
+import ItemDetails, { ListItem, ListItemDesc } from "../item-details";
 import { withSwapiService } from "../hoc-helpers";
 
 // TODO: Wrap this code in abstract factory
@@ -131,11 +131,4 @@ const FilmDetails = withSwapiService(filmMethodsToProps)(filmDetails);
 const SpecieDetails = withSwapiService(specieMethodsToProps)(specieDetails);
 const VehicleDetails = withSwapiService(vehicleMethodsToProps)(vehicleDetails);
 
-export {
-  PersonDetails,
-  PlanetDetails,
-  StarshipDetails,
-  FilmDetails,
-  SpecieDetails,
-  VehicleDetails
-};
+export { PersonDetails, PlanetDetails, StarshipDetails, FilmDetails, SpecieDetails, VehicleDetails };
