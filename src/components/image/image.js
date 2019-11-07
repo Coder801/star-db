@@ -1,21 +1,25 @@
-import React, { Component } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 
-import ErrorIndicator from "../../containers/error-indicator";
+import placeholder from "./img/placeholder.svg";
 
-export default class ErrorBoundry extends Component {
-  state = {
-    hasError: false
+const Image = ({ src, alt }) => {
+  const style = {
+    width: "100%",
+    height: "100%",
+    maxWidth: "100%"
   };
 
-  componentDidCatch() {
-    this.state({
-      hasError: true
-    });
-  }
+  const onError = event => {
+    event.target.src = placeholder;
+  };
 
-  render() {
-    const { hasError } = this.state;
+  return <img src={src} alt={alt} style={style} onError={onError} />;
+};
 
-    return !hasError ? this.props.children : <ErrorIndicator />;
-  }
-}
+export default Image;
+
+Image.propTypes = {
+  src: PropTypes.string,
+  alt: PropTypes.string
+};
