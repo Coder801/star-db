@@ -2,6 +2,7 @@ import { compose } from "ramda";
 import React from "react";
 
 import ItemList from "../item-list";
+import Image from "../../components/image";
 import { withData, withFunc, withSwapiService } from "../hoc-helpers";
 
 const personsMethodToProps = swapiService => ({
@@ -30,7 +31,7 @@ const starshipsMethodToProps = swapiService => ({
 
 const ListItemFormat = ({ name, image }) => (
   <React.Fragment>
-    <img src={image} alt={name}></img>
+    <Image src={image} alt={name} />
     <h4>{name}</h4>
   </React.Fragment>
 );

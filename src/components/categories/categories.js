@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Image from "../../components/image";
 
 import style from "./categories.module.scss";
 import { CATEGORIES } from "../../constants";
@@ -19,7 +20,7 @@ const renderList = list =>
       <Link className={style.link} to={route}>
         <figure className={style.figure}>
           <div className={style.image}>
-            <img src={images[key]} alt={label} />
+            <Image src={images[key]} alt={label} />
           </div>
           <figcaption className={style.caption}>
             <h3 className={style.title}>{label}</h3>

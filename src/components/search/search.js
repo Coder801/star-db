@@ -4,6 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 import { toLower, mergeRight } from "ramda";
 
 import Spinner from "../../containers/spinner";
+import Image from "../../components/image";
 import { regexp } from "../../helpers";
 
 import style from "./search.module.scss";
@@ -19,7 +20,7 @@ const SearchResults = ({ data, match, onClick }) => {
       <li className={style.item} key={key}>
         <figure className={style.thumbnail}>
           <div className={style.image}>
-            <img src={image} alt="" />
+            <Image src={image} alt="" />
           </div>
         </figure>
         <Link

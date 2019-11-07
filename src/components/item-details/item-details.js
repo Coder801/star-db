@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Spinner from "../../containers/spinner";
+import Image from "../../components/image";
 
 import style from "./item-details.module.scss";
 
@@ -74,7 +75,7 @@ const Details = ({ name, image, data, records, category }) => (
     <h3 className={style.title}>{name}</h3>
     <div className={style.info}>
       <figure className={style.figure}>
-        <img className={style.image} src={image} alt={name} />
+        <Image src={image} alt={name} />
       </figure>
       <div className={style.description}>
         <ul className={style.list}>{React.Children.map(records, record => React.cloneElement(record, { data }))}</ul>
