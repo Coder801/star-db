@@ -4,7 +4,7 @@ import { useHistory, withRouter } from "react-router-dom";
 import Categories from "../../components/categories";
 import Jumbotron from "../../components/jumbotron";
 
-import style from "./style.module.scss";
+import style from "./home.module.scss";
 
 const Left = () => {
   return (
@@ -48,7 +48,7 @@ const Toggle = ({ isCategoriesOpen }) => {
   );
 };
 
-const HomePage = props => {
+const Home = props => {
   let { openCategories, match } = props;
   const isCategories = match.path === "/categories";
 
@@ -62,4 +62,4 @@ const HomePage = props => {
   );
 };
 
-export default withRouter(HomePage);
+export default withRouter(Home);

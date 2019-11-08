@@ -1,6 +1,6 @@
-import { HomePage } from "./homepage";
-import { SearchPage } from "./searchpage";
+import { Home } from "./home";
+import { Search } from "./search";
 import { List } from "./list";
 import { Details } from "./details";
 
-export { HomePage, SearchPage, List, Details };
+export { Home, Search, List, Details };

@@ -1,0 +1,63 @@
+@import '../../styles/variables.scss';
+
+
+.page {
+  & {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    max-width: 2000px;
+
+    &:before {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      width: 100%;
+      height: 100%;
+      background-image: radial-gradient(circle at bottom, rgba(4, 43, 70, .3) 10%, #042b46 100%), url('./img/background.jpg');
+      background-position: center center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      content: '';
+    }
+
+    & .list {
+      margin: 0 auto;
+      padding: 0;
+      max-width: 1000%;
+      width: 50%;
+      list-style: none;
+
+      & .item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+        border: 1px solid $white;
+
+        & .image {
+          margin: .5rem;
+          margin-right: 1rem;
+          width: 7rem;
+        }
+
+        & .description {
+
+          & .label {
+            color: $white;
+            font-size: 2rem;
+            margin: 0;
+            margin-bottom: 1rem;
+          }
+
+          & .category {
+            color: $white;
+            font-size: 1.5rem;
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+}
