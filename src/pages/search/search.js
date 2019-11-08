@@ -35,6 +35,8 @@ const data = [
   }
 ];
 
+// Some comment for test commit
+
 const SearchResults = ({ data }) => {
   const results = data => {
     return data.map(({ name, img, category }, key) => {
