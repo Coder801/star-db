@@ -57,10 +57,7 @@ export default class App extends Component {
                     path="/vehicles/:id"
                     render={({ match }) => <Details itemId={match.params.id} url={match.url} />}
                   />
-                  <Route
-                    path="/search/:key"
-                    render={({ match }) => <SearchPage itemId={match.params.id} url={match.url} />}
-                  />
+                  <Route path="/search/" render={({ match }) => <SearchPage search={match} url={match.url} />} />
                 </Switch>
               </main>
             </div>
