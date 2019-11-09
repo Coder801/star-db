@@ -57,14 +57,15 @@
 }
 
 .page {
- padding: 0;
+ margin: 0;
 }
 
 .header {
- padding: 1rem;
+ position: relative;
+ margin: 1rem;
 }
 
 .main {
+ margin: 0;
  margin-top: 2rem;
- padding: 0;
 }

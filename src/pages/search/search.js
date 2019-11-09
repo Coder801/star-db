@@ -37,7 +37,7 @@ const data = [
 
 // Some comment for test commit
 
-const SearchResults = ({ data }) => {
+const Results = ({ data }) => {
   const results = data => {
     return data.map(({ name, img, category }, key) => {
       return (
@@ -52,30 +52,26 @@ const SearchResults = ({ data }) => {
     });
   };
 
-  return <ul className={style.list}>{results(data)}</ul>;
-};
-
-const SearchField = ({ value }) => {
-  const [state, setState] = useState({
-    value
-  });
-
-  const onChange = event => {
-    const { value } = event.currentTarget;
-    setState({ value });
-  };
-
   return (
-    <div className={style.searchField}>
-      <input value={state.value} onChange={onChange} />
+    <div className={style.results}>
+      <ul className={style.list}>{results(data)}</ul>
     </div>
   );
 };
 
+const NoResults = () => {
+  return (
+    <div className={style.noResults}>
+      <h2>No Results</h2>
+    </div>
+  );
+};
+
+const SearchResults = ({ data }) => (data ? <Results data={data} /> : <NoResults />);
+
 const Search = ({ search }) => {
   return (
     <div className={style.page}>
-      <SearchField value="test" />
       <SearchResults data={data} />
     </div>
   );
