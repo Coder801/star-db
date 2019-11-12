@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import { SwSearch } from "../sw-components";
 import Navigation from "../navigation";
-import Image from "../../components/image";
+import SearchResults from "../search-results";
 
 import logo from "./img/logo-header.png";
 
@@ -25,20 +25,7 @@ const Header = () => {
           <SwSearch />
         </div>
       </div>
-      {/* For test start */}
-      <div className={style.searchResults}>
-        <ul className={style.list}>
-          <li className={style.item}>
-            <figure className={style.thumbnail}>
-              <div className={style.image}>
-                <Image src={"./"} alt="" />
-              </div>
-            </figure>
-            test
-          </li>
-        </ul>
-      </div>
-      {/* For test End */}
+      <SearchResults data={[]} />
     </Fragment>
   );
 };
