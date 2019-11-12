@@ -2,7 +2,7 @@
 
 .header {
  display: flex;
- //overflow-y: hidden;
+ overflow: hidden;
  align-items: center;
  justify-content: space-between;
  margin: 0;
@@ -51,4 +51,13 @@
  & .image {
   max-width: 200px;
  }
+}
+
+.searchResults {
+ position: absolute;
+ top: calc(100% - 34px);
+ right: 0;
+ width: 100px;
+ height: 100px;
+ background-color: #ccc;
 }
