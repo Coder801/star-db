@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { Link, useHistory } from "react-router-dom";
-import { toLower, mergeRight } from "ramda";
+import { Link } from "react-router-dom";
 import { regexp } from "../../helpers";
 
 import Image from "../image";
 
 import style from "./search-results.module.scss";
 
-const SearchResults = ({ data, match, onClick }) => {
+const SearchResults = ({ data, value, match, onClick }) => {
   const wrapMatch = (string, match) => {
     const pattern = regexp(`(${match})`, "g");
     return { __html: string.replace(pattern, `<span>$1</span>`) };
@@ -31,13 +30,15 @@ const SearchResults = ({ data, match, onClick }) => {
       </li>
     ));
 
-  const noResults = text => {
-    return (
-      <li className={style.item}>
-        <p className={style.text}>{text}</p>
-      </li>
-    );
-  };
+  const noResults = text => (
+    <li className={style.item}>
+      <p className={style.text}>{text}</p>
+    </li>
+  );
+
+  if (!value) {
+    return false;
+  }
 
   const result = data.length ? resultsList(data) : noResults("No Results...");
 

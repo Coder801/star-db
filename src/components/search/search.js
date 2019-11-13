@@ -9,43 +9,7 @@ import { regexp } from "../../helpers";
 
 import style from "./search.module.scss";
 
-const SearchResults = ({ data, match, onClick }) => {
-  const wrapMatch = (string, match) => {
-    const pattern = regexp(`(${match})`, "g");
-    return { __html: string.replace(pattern, `<span>$1</span>`) };
-  };
-
-  const resultsList = results =>
-    results.map(({ image, name, category, id }, key) => (
-      <li className={style.item} key={key}>
-        <figure className={style.thumbnail}>
-          <div className={style.image}>
-            <Image src={image} alt="" />
-          </div>
-        </figure>
-        <Link
-          className={style.link}
-          onClick={onClick}
-          to={`/${category}/${id}`}
-          dangerouslySetInnerHTML={wrapMatch(name, match)}
-        ></Link>
-      </li>
-    ));
-
-  const noResults = text => {
-    return (
-      <li className={style.item}>
-        <p className={style.text}>{text}</p>
-      </li>
-    );
-  };
-
-  const result = data.length ? resultsList(data) : noResults("No Results...");
-
-  return <ul className={style.list}>{result}</ul>;
-};
-
-const Search = ({ getData }) => {
+const Search = ({ getData, onChangeSearch }) => {
   const [state, setState] = useState({
     loading: false,
     open: false,
@@ -55,10 +19,6 @@ const Search = ({ getData }) => {
   });
 
   const history = useHistory();
-
-  const onSelect = () => {
-    setState(state => mergeRight(state, { results: [], value: "" }));
-  };
 
   const openSearch = () => {
     setState(state => mergeRight(state, { open: !state.open }));
@@ -90,6 +50,8 @@ const Search = ({ getData }) => {
     const { value } = event.currentTarget;
     const { allResults } = state;
 
+    console.log(onChangeSearch);
+
     setState(state => mergeRight(state, { value, loading: true }));
 
     if (allResults.length && value) {
@@ -119,17 +81,8 @@ const Search = ({ getData }) => {
         placeholder="Search..."
       />
       <div className={style.spinner}>{loading && <Spinner size={1} width={2} />}</div>
-      <div className={style.result}>
-        {value && !loading && <SearchResults data={results} onClick={onSelect} match={value} />}
-      </div>
     </div>
   );
-};
-
-SearchResults.propTypes = {
-  data: PropTypes.object.isRequired,
-  match: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired
 };
 
 Search.propTypes = {
